@@ -29,6 +29,7 @@ export function Register() {
           <Input type="password" placeholder="Sua senha" />
           <div>
             <ReCAPTCHA
+              theme="dark"
               sitekey="6LcvmRYpAAAAAMZwyQmXuDJ_z6hoUGXQSZlidWXY"
               onChange={(val) => setCapVal(val)}
             />

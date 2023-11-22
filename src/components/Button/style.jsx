@@ -7,7 +7,7 @@ export const ContainerButton = styled.button`
   font-weight: 700;
   font-size: 20px;
   border-radius: 8px;
-  color: #c8c3c1;
+  color: #ffffff;
   cursor: pointer;
   border: none;
   margin-top: ${(props) => (props.spacetop ? '20px' : 'none')};

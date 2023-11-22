@@ -5,3 +5,5 @@
 export * from './Button';
 export * from './InputPassword';
 export * from './InputText';
+export * from './Header';
+export * from './listCategory';
