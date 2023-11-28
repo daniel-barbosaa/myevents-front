@@ -1,10 +1,8 @@
-import Carousel from 'react-elastic-carousel';
-import { Container, Text } from './style';
+import { Container, Title, Image, ContainerItem, P, Carrousel } from './style';
 import Olho from '../../assets/olho.svg';
+import Event from '../../assets/social-event.jpg';
 
-export function MoreSeenCarousel({ ...props }) {
-  const events = [{}];
-
+export function MoreSeenCarousel() {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 400, itemsToShow: 2 },
@@ -35,19 +33,32 @@ export function MoreSeenCarousel({ ...props }) {
   ];
 
   return (
-    <Container {...props}>
-      <Text>
+    <Container>
+      <Title>
         EVENTOS MAIS VISTOS <img src={Olho} />
-      </Text>
-      <Carousel
-        itemsToShow={5}
-        breakPoints={breakPoints}
-        style={{ width: '95%' }}
-      >
-        {event.map((item) => (
-          <div>{item.label}</div>
-        ))}
-      </Carousel>
+      </Title>
+      <ContainerItem>
+        <Carrousel
+          itemsToShow={5}
+          breakPoints={breakPoints}
+          style={{ width: '100%' }}
+        >
+          {event.map((item) => (
+            <ContainerItem column spacer pointer>
+              <Image src={Event} alt="" />
+              <ContainerItem column spacer>
+                <P purple small style={{ fontWeight: 'bold' }}>
+                  4 JAN <i>{'>'}</i> 25 JAN
+                </P>
+                <P>CONFERÊNCIA SATIFICAÇÃO</P>
+                <P small light>
+                  IGREJA RED - INDAIATUBA, SP
+                </P>
+              </ContainerItem>
+            </ContainerItem>
+          ))}
+        </Carrousel>
+      </ContainerItem>
     </Container>
   );
 }

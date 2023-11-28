@@ -1,7 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from 'react';
 import { Container, Text, ContainerItem, TicketImg, Input, P } from './style';
-import { Header, ListCategory, MoreSeenCarousel } from '../../components';
+import {
+  Header,
+  ListCategory,
+  MoreSeenCarousel,
+  AutomaticCarousel,
+} from '../../components';
 
 export function Home() {
   return (
@@ -9,6 +14,7 @@ export function Home() {
       <Header spacer />
       <ListCategory />
       <MoreSeenCarousel />
+      <AutomaticCarousel />
     </Container>
   );
 }
