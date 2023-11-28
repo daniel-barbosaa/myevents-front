@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  padding: 20px;
+  padding: 15px;
   justify-content: space-between;
-  margin-bottom: ${(props) => (props.spacer ? '30px' : 'none')};
+  margin-bottom: ${(props) => (props.spacer ? '50px' : 'none')};
 `;
 
 export const H1 = styled.h1`

@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
   height: 100vh;
   width: 100%;
   background: #15151a;
+  padding: 20px;
+  gap: 20px;
 `;
 
 export const ContainerItem = styled.div`
