@@ -1,7 +1,16 @@
-import Slider from 'infinite-react-carousel';
-import { Container, Title, Image, ContainerItem, P, Carrousel } from './style';
+import {
+  Container,
+  Title,
+  Image,
+  ContainerItem,
+  P,
+  Carrousel,
+  Wrape,
+  Info,
+} from './style';
+
 import Fire from '../../assets/fire.svg';
-import Event from '../../assets/banner-igreja.jpg';
+import Event from '../../assets/social-event.jpg';
 
 export function AutomaticCarousel() {
   const event = [
@@ -29,21 +38,38 @@ export function AutomaticCarousel() {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 4000,
-    slidesToShow: 4,
+    slidesToShow: 1,
+    wheel: true,
   };
 
   return (
     <Container>
       <Title>
-        EM DESTAQUE <img src={Fire} />
+        EVENTOS EM DESTAQUE <img src={Fire} />
       </Title>
-      <Slider {...settings}>
+      <Carrousel {...settings}>
         {event.map((item) => (
           <ContainerItem>
-            <Image src={Event} />
+            <Wrape>
+              <Image src={Event} />
+              <Info>
+                <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                  Não perca!
+                </P>
+                <P style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                  Não fique de fora!
+                </P>
+                <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                  Venha e participe!
+                </P>
+                <P style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                  DIA: 20 / 07
+                </P>
+              </Info>
+            </Wrape>
           </ContainerItem>
         ))}
-      </Slider>
+      </Carrousel>
     </Container>
   );
 }

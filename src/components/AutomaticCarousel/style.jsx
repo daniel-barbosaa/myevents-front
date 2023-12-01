@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import Carousel from 'react-elastic-carousel';
+import Slider from 'infinite-react-carousel';
+
+export const Carrousel = styled(Slider)``;
 
 export const Container = styled.div`
   width: 100%;
@@ -7,22 +9,6 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 30px;
   margin-bottom: ${(props) => (props.spacer ? '30px' : 'none')};
-`;
-
-export const Carrousel = styled(Carousel)`
-  .sc-kstpWv {
-    background: transparent;
-  }
-
-  .jfzbvv {
-    color: #7e52de;
-    box-shadow: none;
-  }
-
-  .hQICvF {
-    color: #7e52de;
-    box-shadow: none;
-  }
 `;
 
 export const Title = styled.p`
@@ -38,15 +24,25 @@ export const Title = styled.p`
 `;
 
 export const ContainerItem = styled.div`
+  cursor: pointer;
+  padding: 20px;
+`;
+
+export const Wrape = styled.div`
   display: flex;
-  flex-direction: ${(props) => (props.column ? 'column' : 'none')};
-  gap: ${(props) => (props.spacer ? '10px' : '0px')};
-  cursor: ${(props) => (props.pointer ? 'pointer' : 'none')};
+`;
+
+export const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 30px;
+  padding: 20px;
 `;
 
 export const Image = styled.img`
-  width: 220px;
-  border-radius: 8px;
+  width: 50%;
+  border-radius: 20px;
 `;
 
 export const P = styled.p`
