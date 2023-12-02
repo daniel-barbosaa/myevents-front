@@ -9,3 +9,4 @@ export * from './Header';
 export * from './listCategory';
 export * from './MoreSeenCarousel';
 export * from './AutomaticCarousel';
+export * from './Footer';

@@ -9,14 +9,10 @@ import {
   Footer,
 } from '../../components';
 
-export function Home() {
+export function Main() {
   return (
     <Container>
-      <Header spacer login/>
-      <ListCategory />
-      <MoreSeenCarousel />
-      <AutomaticCarousel />
-      <Footer />
+      <Header spacer />
     </Container>
   );
 }

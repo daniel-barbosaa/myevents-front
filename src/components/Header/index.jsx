@@ -8,22 +8,26 @@ import {
   ContainerItem,
 } from './style';
 
-export function Header({ ...props }) {
+export function Header({ spacer, login = false }) {
   return (
-    <Container {...props}>
+    <Container spacer>
       <H1>MyEvents</H1>
-      <ContainerItem>
-        <WrapperLogin>
-          <PersonOutlineOutlinedIcon
-            style={{ color: '#7E52DE' }}
-            fontSize="medium"
-          />
-          <Text>ENTRAR</Text>
-        </WrapperLogin>
-        <WrapperRegister>
-          <Text>CRIAR CONTA</Text>
-        </WrapperRegister>
-      </ContainerItem>
+      {login ? (
+        <ContainerItem>
+          <WrapperLogin>
+            <PersonOutlineOutlinedIcon
+              style={{ color: '#7E52DE' }}
+              fontSize="medium"
+            />
+            <Text>ENTRAR</Text>
+          </WrapperLogin>
+          <WrapperRegister>
+            <Text>CRIAR CONTA</Text>
+          </WrapperRegister>
+        </ContainerItem>
+      ) : (
+        <h1>teste</h1>
+      )}
     </Container>
   );
 }

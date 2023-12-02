@@ -30,6 +30,10 @@ export const ContainerItem = styled.div`
 
 export const Wrape = styled.div`
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 2px 4px 26px 0px rgba(0, 0, 0, 0.31);
 `;
 
 export const Info = styled.div`
@@ -37,18 +41,16 @@ export const Info = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-left: 30px;
-  padding: 20px;
 `;
 
 export const Image = styled.img`
   width: 50%;
-  border-radius: 20px;
+  border-radius: 20px 0px 0px 20px;
 `;
 
 export const P = styled.p`
-  color: ${(props) => (props.purple ? '#7E52DE' : '#ffff')};
-  font-size: ${(props) => (props.small ? '12px' : '16px')};
-  font-weight: ${(props) => (props.light ? '200' : '400')};
+  color: ${(props) => (props.purple ? '#7E52DE' : '#C8C3C1')};
+  opacity: 0.8;
 
   i {
     padding: 0px 5px;

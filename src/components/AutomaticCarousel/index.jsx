@@ -63,7 +63,7 @@ export function AutomaticCarousel() {
                   Venha e participe!
                 </P>
                 <P style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                  DIA: 20 / 07
+                  DIA: 20 <i>/</i> 07
                 </P>
               </Info>
             </Wrape>
