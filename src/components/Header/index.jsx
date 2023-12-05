@@ -1,4 +1,7 @@
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Ticket from '../../assets/ticket-white.svg';
+import { MenuNavigate } from '../MenuNavigate';
 import {
   Container,
   H1,
@@ -9,9 +12,17 @@ import {
 } from './style';
 
 export function Header({ spacer, login = false }) {
+  const purpleColor = '#7E52DE';
   return (
     <Container spacer>
-      <H1>MyEvents</H1>
+      {login ? (
+        <H1>MyEvents</H1>
+      ) : (
+        <ContainerItem>
+          <H1 style={{ color: '#f1f1f1' }}>MyEvents</H1>
+          <img src={Ticket} style={{ width: '50px' }} />
+        </ContainerItem>
+      )}
       {login ? (
         <ContainerItem>
           <WrapperLogin>
@@ -26,7 +37,12 @@ export function Header({ spacer, login = false }) {
           </WrapperRegister>
         </ContainerItem>
       ) : (
-        <h1>teste</h1>
+        <ContainerItem space>
+          <div>
+            <AccountCircleIcon sx={{ color: purpleColor }} fontSize="large" />
+          </div>
+          <MenuNavigate />
+        </ContainerItem>
       )}
     </Container>
   );

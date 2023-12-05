@@ -7,12 +7,18 @@ import {
   MoreSeenCarousel,
   AutomaticCarousel,
   Footer,
+  CheckOutCarousel,
 } from '../../components';
 
 export function Main() {
   return (
     <Container>
       <Header spacer />
+      <ListCategory />
+      <MoreSeenCarousel />
+      <CheckOutCarousel />
+      <AutomaticCarousel />
+      <Footer />
     </Container>
   );
 }

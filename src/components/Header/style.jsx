@@ -48,5 +48,5 @@ export const ContainerItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: ${(props) => (props.space ? '5px' : '20px')};
 `;

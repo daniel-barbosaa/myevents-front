@@ -10,3 +10,5 @@ export * from './listCategory';
 export * from './MoreSeenCarousel';
 export * from './AutomaticCarousel';
 export * from './Footer';
+export * from './MenuNavigate';
+export * from './CheckOutCarousel';
