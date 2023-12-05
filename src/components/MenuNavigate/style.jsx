@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.p`
-  color: #f1f1f1;
+  color: ${(props) => (props.stylelight ? '#15151A' : '#f1f1f1')};
   display: flex;
   flex-direction: row;
   gap: 10px;

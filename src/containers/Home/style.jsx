@@ -6,8 +6,8 @@ export const Container = styled.div`
   gap: 50px;
   width: 100%;
   background: #15151a;
-  padding: 20px;
   gap: 20px;
+  padding: 20px;
 `;
 
 export const ContainerItem = styled.div`

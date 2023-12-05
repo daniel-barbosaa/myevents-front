@@ -11,15 +11,15 @@ import {
   ContainerItem,
 } from './style';
 
-export function Header({ spacer, login = false }) {
+export function Header({ spacer, login = false, stylelight }) {
   const purpleColor = '#7E52DE';
   return (
-    <Container spacer>
+    <Container spacer stylelight>
       {login ? (
         <H1>MyEvents</H1>
       ) : (
         <ContainerItem>
-          <H1 style={{ color: '#f1f1f1' }}>MyEvents</H1>
+          <H1 stylelight>MyEvents</H1>
           <img src={Ticket} style={{ width: '50px' }} />
         </ContainerItem>
       )}
@@ -41,7 +41,7 @@ export function Header({ spacer, login = false }) {
           <div>
             <AccountCircleIcon sx={{ color: purpleColor }} fontSize="large" />
           </div>
-          <MenuNavigate />
+          <MenuNavigate stylelight />
         </ContainerItem>
       )}
     </Container>

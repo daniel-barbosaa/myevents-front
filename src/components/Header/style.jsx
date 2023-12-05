@@ -2,13 +2,15 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  padding: 15px;
+  padding: 20px;
   justify-content: space-between;
   margin-bottom: ${(props) => (props.spacer ? '50px' : 'none')};
+  box-shadow: ${(props) =>
+    props.stylelight ? '0px 0.1px 6px 0px #00000018' : 'none'};
 `;
 
 export const H1 = styled.h1`
-  color: #ffffff;
+  color: ${(props) => (props.stylelight ? '#15151A' : '#f1f1f1')};
 `;
 
 export const WrapperLogin = styled.div`

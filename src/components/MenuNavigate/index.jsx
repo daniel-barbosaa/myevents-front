@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
@@ -10,7 +11,8 @@ import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import { Text, Container, P } from './style';
 
-export function MenuNavigate() {
+
+export function MenuNavigate({ stylelight }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -30,7 +32,7 @@ export function MenuNavigate() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <Text>
+        <Text stylelight>
           Daniel barbosa
           <KeyboardArrowDownIcon />
         </Text>
@@ -45,6 +47,14 @@ export function MenuNavigate() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
+        {stylelight && (
+          <MenuItem onClick={handleClose}>
+            <P>
+              <HomeOutlinedIcon sx={{ color: purpleColor }} />
+              Inicio
+            </P>
+          </MenuItem>
+        )}
         <MenuItem onClick={handleClose}>
           <P>
             <ConfirmationNumberOutlinedIcon sx={{ color: purpleColor }} />
