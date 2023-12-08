@@ -12,3 +12,4 @@ export * from './AutomaticCarousel';
 export * from './Footer';
 export * from './MenuNavigate';
 export * from './CheckOutCarousel';
+export * from './Description';
