@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const ContainerItem = styled.div`
   display: flex;
+  gap: ${(props) => (props.gap ? '100px' : '0px')};
   flex-direction: ${(props) => (props.column ? 'column' : 'row')};
   justify-content: center;
   margin-top: ${(props) => (props.spacetop ? '30px' : '0px')};
@@ -22,17 +23,11 @@ export const ContainerItem = styled.div`
 
 export const Text = styled.h1`
   display: flex;
-  column-gap: 10px;
-  align-items: center;
-  font-size: ${(props) => (props.desc ? '12px' : '25px')};
-  font-weight: semi-bold;
-  color: #000000;
-  line-height: normal;
-  margin-bottom: ${(props) => (props.spacer ? '30px' : 'none')};
-`;
-
-export const Image = styled.img`
-  width: 200px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  width: 150px;
+  border-left: ${(props) => (props.border ? '3px solid #7e5ede' : 'none')};
+  padding-left: ${(props) => (props.padding ? '10px' : 'none')};
 `;
 
 export const P = styled.p`
@@ -44,27 +39,9 @@ export const P = styled.p`
   font-weight: 800;
   opacity: 0.6;
   margin-top: ${(props) => (props.spacetop ? '10px' : 'none')};
-  margin-bottom: 10px;
 `;
 
-export const CardIngress = styled.div`
-  background: #f44434;
-  padding: 15px;
-  display: flex;
-  column-gap: 20px;
-  border-radius: 8px;
-
-  p {
-    color: #ffffff;
-    font-weight: 300;
-  }
-
-  a {
-    display: block;
-    margin-top: 10px;
-    color: #ffffff;
-  }
-`;
+export const CardIngress = styled.div``;
 
 export const ButtonAdd = styled.div`
   display: flex;
@@ -91,9 +68,16 @@ export const ButtonAdd = styled.div`
 `;
 
 export const Title = styled.p`
-  width: 200px;
+  display: flex;
+  justify-content: space-between;
   font-weight: ${(props) => (props.bold ? '500' : '300')};
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+
+  i {
+    font-weight: normal;
+    font-size: 15px;
+    opacity: 0.7;
+  }
 `;
 
 export const InputDescount = styled.input`
@@ -115,5 +99,9 @@ export const WrapperIngress = styled.div`
   padding: 20px;
   column-gap: 30px;
   border-bottom: ${(props) =>
-    props.bordernone ? 'none' : '1px dashed #C8C3C1'};
+    props.bordernone ? 'none' : '1px solid #C8C3C1'};
+`;
+
+export const Value = styled.i`
+  color: #7e5ede;
 `;
