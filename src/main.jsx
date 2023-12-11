@@ -7,12 +7,13 @@ import {
   Main,
   InfoTicket,
   PaymentForm,
+  Tickets,
 } from './containers/index';
 import StyleGlobal from './styles/globalStyles';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StyleGlobal />
-    <PaymentForm />
+    <Tickets />
   </React.StrictMode>,
 );

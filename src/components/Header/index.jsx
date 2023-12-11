@@ -19,7 +19,7 @@ export function Header({ spacer, login = false, stylelight }) {
         <H1>MyEvents</H1>
       ) : (
         <ContainerItem>
-          <H1 stylelight>MyEvents</H1>
+          <H1 >MyEvents</H1>
           <img src={Ticket} style={{ width: '50px' }} />
         </ContainerItem>
       )}

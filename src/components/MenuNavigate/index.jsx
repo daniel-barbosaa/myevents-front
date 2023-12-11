@@ -11,8 +11,7 @@ import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import { Text, Container, P } from './style';
 
-
-export function MenuNavigate({ stylelight }) {
+export function MenuNavigate({ stylelight = false }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -32,7 +31,7 @@ export function MenuNavigate({ stylelight }) {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <Text stylelight>
+        <Text >
           Daniel barbosa
           <KeyboardArrowDownIcon />
         </Text>

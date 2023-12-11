@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Calendar } from 'primereact/calendar';
 
 export const Container = styled.div`
   display: flex;
@@ -12,6 +13,7 @@ export const ContainerItem = styled.div`
   display: flex;
   gap: ${(props) => (props.gap ? '100px' : '0px')};
   flex-direction: ${(props) => (props.column ? 'column' : 'row')};
+  align-items: ${(props) => (props.align ? 'center' : 'none')};
   justify-content: center;
   margin-top: ${(props) => (props.spacetop ? '30px' : '0px')};
   border-radius: 10px;
@@ -40,8 +42,6 @@ export const P = styled.p`
   opacity: 0.6;
   margin-top: ${(props) => (props.spacetop ? '10px' : 'none')};
 `;
-
-export const CardIngress = styled.div``;
 
 export const ButtonAdd = styled.div`
   display: flex;
@@ -80,14 +80,24 @@ export const Title = styled.p`
   }
 `;
 
-export const InputDescount = styled.input`
-  border: 1px solid #c8c3c1;
-  padding: 10px;
+export const Input = styled.input`
+  width: 100%;
+  border: none;
+  height: 40px;
+  padding-left: 10px;
   border-radius: 8px;
-  color: #8a827f;
+  color: #020202;
+  background: #c8c3c14e;
+  margin-bottom: 15px;
 
   &:focus {
-    border: 1px solid #7e52de;
+    border: 1px solid #afabaa;
+  }
+
+  &::placeholder {
+    color: #c8c3c1;
+    opacity: 0.7;
+    font-size: 12px;
   }
 `;
 
@@ -104,4 +114,22 @@ export const WrapperIngress = styled.div`
 
 export const Value = styled.i`
   color: #7e5ede;
+`;
+
+export const PaymentWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 1px 3px 10px -2px rgba(0, 0, 0, 0.58);
+  padding: 15px;
+  width: ${(props) => (props.width ? '350px' : 'none')};
+  padding: ${(props) => (props.padding ? '25px' : '0px')};
+`;
+
+export const Label = styled.p`
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 5px;
 `;
