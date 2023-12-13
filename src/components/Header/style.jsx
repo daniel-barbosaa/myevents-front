@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const H1 = styled.h1`
-  color: ${(props) => (props.stylelight ? '#15151A' : '#f1f1f1')};
+  color: ${(props) => (props.dark ? '#15151A' : '#f1f1f1')};
 `;
 
 export const WrapperLogin = styled.div`
@@ -29,7 +29,7 @@ export const WrapperLogin = styled.div`
 `;
 
 export const Text = styled.p`
-  color: #ffffff;
+  color: ${(props) => (props.dark ? '#15151A' : '#f1f1f1')};
   font-weight: 600;
   font-size: 14px;
 `;

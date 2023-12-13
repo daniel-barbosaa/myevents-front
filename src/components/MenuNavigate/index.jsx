@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -11,7 +12,7 @@ import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import { Text, Container, P } from './style';
 
-export function MenuNavigate({ stylelight = false }) {
+export function MenuNavigate({ stylelight = false, dark = false }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -22,6 +23,8 @@ export function MenuNavigate({ stylelight = false }) {
   };
   const purpleColor = '#7E52DE';
 
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Button
@@ -31,10 +34,17 @@ export function MenuNavigate({ stylelight = false }) {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <Text >
-          Daniel barbosa
-          <KeyboardArrowDownIcon />
-        </Text>
+        {dark ? (
+          <Text stylelight>
+            Daniel barbosa
+            <KeyboardArrowDownIcon />
+          </Text>
+        ) : (
+          <Text>
+            Daniel barbosa
+            <KeyboardArrowDownIcon />
+          </Text>
+        )}
       </Button>
       <Menu
         id="fade-menu"
@@ -48,14 +58,22 @@ export function MenuNavigate({ stylelight = false }) {
       >
         {stylelight && (
           <MenuItem onClick={handleClose}>
-            <P>
+            <P
+              onClick={() => {
+                navigate('/main');
+              }}
+            >
               <HomeOutlinedIcon sx={{ color: purpleColor }} />
               Inicio
             </P>
           </MenuItem>
         )}
         <MenuItem onClick={handleClose}>
-          <P>
+          <P
+            onClick={() => {
+              navigate('/meus-ingressos');
+            }}
+          >
             <ConfirmationNumberOutlinedIcon sx={{ color: purpleColor }} />
             Ingressos
           </P>

@@ -20,7 +20,7 @@ export function PaymentForm() {
 
   return (
     <Container>
-      <Header stylelight />
+      <Header dark />
       <ContainerItem gap align>
         <ContainerItem column background shadow spacetop>
           <WrapperIngress column>
@@ -76,7 +76,6 @@ export function PaymentForm() {
           </WrapperIngress>
         </ContainerItem>
 
-        
         <PaymentWrapper width padding>
           <Title bold>FORMA DE PAGAMENENTO</Title>
           <form action="">

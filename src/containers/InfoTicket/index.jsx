@@ -25,7 +25,7 @@ export function InfoTicket() {
   const purpleColor = '#7E52DE';
   return (
     <Container>
-      <Header stylelight />
+      <Header dark />
       <ContainerItem>
         <Image src={UndrawImg} />
       </ContainerItem>
@@ -109,7 +109,7 @@ export function InfoTicket() {
                 </Button>
               </div>
             </WrapperIngress>
-            <WrapperIngress border column center>
+            <WrapperIngress bordernone column center>
               <Text spacer>
                 <ShoppingCartOutlinedIcon
                   sx={{ color: '#7e5ede' }}
@@ -117,9 +117,7 @@ export function InfoTicket() {
                 />
                 R$ 360,00
               </Text>
-              <ContainerItem column>
-                <Button fontlight>FINALIZAR PEDIDO</Button>
-              </ContainerItem>
+              <Button fontlight>FINALIZAR PEDIDO</Button>
             </WrapperIngress>
           </ContainerItem>
         </div>

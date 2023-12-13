@@ -4,7 +4,6 @@ import { Calendar } from 'primereact/calendar';
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   background: #15151a;
@@ -12,14 +11,48 @@ export const Container = styled.div`
 
 export const ContainerItem = styled.div`
   display: flex;
-  gap: ${(props) => (props.gap ? '100px' : '0px')};
-  flex-direction: ${(props) => (props.column ? 'column' : 'row')};
-  align-items: ${(props) => (props.align ? 'center' : 'none')};
-  justify-content: center;
-  margin-top: ${(props) => (props.spacetop ? '30px' : '0px')};
-  border-radius: 10px;
-  background: ${(props) => (props.background ? '#ffffff' : 'none')};
-  box-shadow: ${(props) =>
-    props.shadow ? '1px 3px 10px -2px rgba(0,0,0,0.58)' : 'none'};
-  margin-bottom: 50px;
+  flex-direction: column;
+  padding: 20px;
+  gap: 30px;
+`;
+
+export const Title = styled.h1`
+  color: #7552de;
+`;
+
+export const EventName = styled.h3`
+  color: #ffffff;
+  font-weight: 400;
+  margin-bottom: 5px;
+`;
+
+export const Text = styled.p`
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: ${(props) => (props.large ? '12px' : '10px')};
+  font-weight: 300;
+  column-gap: 5px;
+  margin-bottom: ${(props) => (props.bottom ? '10px' : '0')};
+`;
+
+export const Ticket = styled.div`
+  width: 300px;
+  border-radius: 8px;
+  background: linear-gradient(
+    39deg,
+    rgba(164, 185, 218, 1) 0%,
+    rgba(145, 142, 254, 1) 45%,
+    rgba(142, 143, 250, 1) 45%,
+    rgba(100, 57, 255, 1) 100%
+  );
+`;
+
+export const FooterTicket = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #4d4179;
+  padding: 10px;
+  border-radius: 0px 0px 8px 8px;
 `;
