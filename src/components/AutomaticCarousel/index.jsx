@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   Container,
   Title,
@@ -8,11 +10,29 @@ import {
   Wrape,
   Info,
 } from './style';
+import apiEventsSympla from '../../services/api';
 
 import Fire from '../../assets/fire.svg';
 import Event from '../../assets/social-event.jpg';
 
 export function AutomaticCarousel() {
+  // const [events, setEvents] = useState([]);
+
+  // useEffect(() => {
+  //   async function loadEvents() {
+  //     try {
+  //       const { data } = await apiEventsSympla.get('');
+  //       console.log(data); // Adicione este log
+  //       setEvents(data);
+  //     } catch (error) {
+  //       console.error('Erro ao buscar eventos:', error);
+  //     }
+  //   }
+  //   loadEvents();
+  // }, []);
+
+  // console.log(events);
+
   const event = [
     {
       label: 'Block 1',
@@ -49,9 +69,9 @@ export function AutomaticCarousel() {
       </Title>
       <Carrousel {...settings}>
         {event.map((item) => (
-          <ContainerItem>
+          <ContainerItem key={item.id}>
             <Wrape>
-              <Image src={Event} />
+              <Image src={item.image} />
               <Info>
                 <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
                   Não perca!

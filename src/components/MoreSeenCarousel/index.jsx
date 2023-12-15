@@ -1,35 +1,38 @@
+import { useState, useEffect } from 'react';
+import moment from 'moment';
+import apiEventsSympla from '../../services/api';
 import { Container, Title, Image, ContainerItem, P, Carrousel } from './style';
 import Olho from '../../assets/olho.svg';
 import Event from '../../assets/social-event.jpg';
 
 export function MoreSeenCarousel() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    async function loadEvents() {
+      try {
+        const { data } = await apiEventsSympla.get('');
+
+        // Atualizar a data no formato DD apenas para exibição
+        const updatedEvents = data.data.map((event) => ({
+          ...event,
+          formatted_date: moment(event.start_date, 'DD-MM-YYYY').format('DD'),
+        }));
+
+        setEvents(updatedEvents);
+      } catch (error) {
+        console.error('Erro ao buscar eventos:', error);
+      }
+    }
+    loadEvents();
+  }, []);
+
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 400, itemsToShow: 2 },
     { width: 600, itemsToShow: 3 },
     { width: 900, itemsToShow: 4 },
     { width: 1300, itemsToShow: 5 },
-  ];
-
-  const event = [
-    {
-      label: 'Block 1',
-    },
-    {
-      label: 'Block 2',
-    },
-    {
-      label: 'Block 3',
-    },
-    {
-      label: 'Block 4',
-    },
-    {
-      label: 'Block 5',
-    },
-    {
-      label: 'Block 6',
-    },
   ];
 
   return (
@@ -43,20 +46,21 @@ export function MoreSeenCarousel() {
           breakPoints={breakPoints}
           style={{ width: '100%' }}
         >
-          {event.map((item) => (
-            <ContainerItem column spacer pointer>
-              <Image src={Event} alt="" />
-              <ContainerItem column spacer>
-                <P purple small style={{ fontWeight: 'bold' }}>
-                  4 JAN <i>{'>'}</i> 25 JAN
-                </P>
-                <P>CONFERÊNCIA SATIFICAÇÃO</P>
-                <P small light>
-                  IGREJA RED - INDAIATUBA, SP
-                </P>
+          {events &&
+            events.map((item) => (
+              <ContainerItem column spacer pointer key={item.id}>
+                <Image src={item.image} alt="" />
+                <ContainerItem column spacer>
+                  <P purple small style={{ fontWeight: 'bold' }}>
+                    {item.formatted_date} JAN <i>{'>'}</i> {item.end_date} JAN
+                  </P>
+                  <P>{item.title}</P>
+                  <P small light>
+                    {item.location}
+                  </P>
+                </ContainerItem>
               </ContainerItem>
-            </ContainerItem>
-          ))}
+            ))}
         </Carrousel>
       </ContainerItem>
     </Container>
