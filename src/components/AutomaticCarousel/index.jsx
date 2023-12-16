@@ -11,28 +11,24 @@ import {
   Info,
 } from './style';
 import apiEventsSympla from '../../services/api';
-
 import Fire from '../../assets/fire.svg';
-import Event from '../../assets/social-event.jpg';
 
 export function AutomaticCarousel() {
-  // const [events, setEvents] = useState([]);
-
-  // useEffect(() => {
-  //   async function loadEvents() {
-  //     try {
-  //       const { data } = await apiEventsSympla.get('');
-  //       console.log(data); // Adicione este log
-  //       setEvents(data);
-  //     } catch (error) {
-  //       console.error('Erro ao buscar eventos:', error);
-  //     }
-  //   }
-  //   loadEvents();
-  // }, []);
-
-  // console.log(events);
-
+  const [events, setEvents] = useState([]);
+  const [isSlider, setisSlider] = useState(false);
+  useEffect(() => {
+    async function loadEvents() {
+      try {
+        const { data } = await apiEventsSympla.get('');
+        // Atualizar a data no formato DD apenas para exibição
+        setEvents(data.data);
+        setisSlider(true);
+      } catch (error) {
+        console.error('Erro ao buscar eventos:', error);
+      }
+    }
+    loadEvents();
+  }, []);
   const event = [
     {
       label: 'Block 1',
@@ -67,29 +63,31 @@ export function AutomaticCarousel() {
       <Title>
         EVENTOS EM DESTAQUE <img src={Fire} />
       </Title>
-      <Carrousel {...settings}>
-        {event.map((item) => (
-          <ContainerItem key={item.id}>
-            <Wrape>
-              <Image src={item.image} />
-              <Info>
-                <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                  Não perca!
-                </P>
-                <P style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                  Não fique de fora!
-                </P>
-                <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                  Venha e participe!
-                </P>
-                <P style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                  DIA: 20 <i>/</i> 07
-                </P>
-              </Info>
-            </Wrape>
-          </ContainerItem>
-        ))}
-      </Carrousel>
+      {isSlider && (
+        <Carrousel {...settings}>
+          {events.map((item) => (
+            <ContainerItem key={item.id}>
+              <Wrape>
+                <Image src={item.image} />
+                <Info>
+                  <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                    Não perca!
+                  </P>
+                  <P style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                    Não fique de fora!
+                  </P>
+                  <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                    Venha e participe!
+                  </P>
+                  <P style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                    DIA: 20 <i>/</i> 07
+                  </P>
+                </Info>
+              </Wrape>
+            </ContainerItem>
+          ))}
+        </Carrousel>
+      )}
     </Container>
   );
 }

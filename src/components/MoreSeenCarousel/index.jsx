@@ -16,9 +16,9 @@ export function MoreSeenCarousel() {
         // Atualizar a data no formato DD apenas para exibição
         const updatedEvents = data.data.map((event) => ({
           ...event,
-          formatted_date: moment(event.start_date, 'DD-MM-YYYY').format('DD'),
+          start_date: moment(event.start_date).format('DD'),
+          end_date: moment(event.start_date).format('DD'),
         }));
-
         setEvents(updatedEvents);
       } catch (error) {
         console.error('Erro ao buscar eventos:', error);
@@ -26,6 +26,8 @@ export function MoreSeenCarousel() {
     }
     loadEvents();
   }, []);
+
+  console.log(events);
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -52,11 +54,11 @@ export function MoreSeenCarousel() {
                 <Image src={item.image} alt="" />
                 <ContainerItem column spacer>
                   <P purple small style={{ fontWeight: 'bold' }}>
-                    {item.formatted_date} JAN <i>{'>'}</i> {item.end_date} JAN
+                    {item.start_date} JAN <i>{'>'}</i> {item.end_date} JAN
                   </P>
-                  <P>{item.title}</P>
+                  <P>{item.name}</P>
                   <P small light>
-                    {item.location}
+                    {item.address.name} - {item.address.state}
                   </P>
                 </ContainerItem>
               </ContainerItem>

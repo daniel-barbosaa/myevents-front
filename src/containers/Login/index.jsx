@@ -1,10 +1,31 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import { Container, Text, ContainerItem, TicketImg, Input, P } from './style';
 import Ticket from '../../assets/Ticket.svg';
-import { InputPassword, InputText, Button } from '../../components';
+import { Button } from '../../components';
 
 export function Login() {
+  /* INICIANDO VALIDACAO DO LOGIN COM REACT-ROOK FORM
+
+    ASSISTIR AULA 339
+  */
+  const [user, setEvents] = useState([]);
+  useEffect(() => {
+    async function loadEvents() {
+      try {
+        const { data } = await axios.get('http://localhost:3001/users');
+        setEvents(data);
+      } catch (error) {
+        console.error('Erro ao buscar eventos:', error);
+      }
+    }
+    loadEvents();
+  }, []);
+
+  console.log(user);
+
   const [value, setValue] = useState('');
   return (
     <Container>
