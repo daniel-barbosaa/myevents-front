@@ -13,14 +13,14 @@ export const Container = styled.div`
 
 export const ContainerItem = styled.div`
   width: 400px;
+  display: flex;
+
 
   form {
     display: flex;
     flex-direction: column;
-    align-items: center;
     background: #18181e;
-    padding: 60px 10px 60px 10px;
-
+    padding: 60px 20px 60px 20px;
     border-radius: 8px;
     div {
       background: #c8c3c1;
@@ -45,7 +45,6 @@ export const TicketImg = styled.img`
 `;
 
 export const Input = styled.input`
-  position: relative;
   border: none;
   width: 300px;
   height: 50px;
@@ -53,7 +52,7 @@ export const Input = styled.input`
   background: #15151a;
   color: #c8c3c1;
   padding-left: 15px;
-  margin-bottom: 15px;
+  gap: 10px;
 
   &::placeholder {
     color: #c8c3c1;
@@ -66,6 +65,7 @@ export const Input = styled.input`
 `;
 
 export const P = styled.p`
+  text-align: center;
   color: #c8c3c1;
   margin-top: 40px;
   font-weight: 300;
@@ -79,4 +79,10 @@ export const P = styled.p`
   a:hover {
     opacity: 0.5;
   }
+`;
+
+export const Error = styled.p`
+  color: #ed4337;
+  opacity: 0.7;
+  margin: 5px;
 `;
