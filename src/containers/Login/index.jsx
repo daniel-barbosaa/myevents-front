@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -18,8 +18,9 @@ import Ticket from '../../assets/Ticket.svg';
 import { Button } from '../../components';
 
 export function Login() {
+  /* sessão de login, validando se usuario existe ou nao para prosseguir */
+
   const [user, setUser] = useState([]);
-  const [noValid, setNoValid] = useState(false);
 
   const schema = Yup.object().shape({
     email: Yup.string()
@@ -39,22 +40,18 @@ export function Login() {
   });
 
   const onSubmit = async (clientData) => {
-    try {
-      const { response } = await axios.post('http://localhost:3001/session', {
+    const response = await toast.promise(
+      axios.post('http://localhost:3001/session', {
         email: clientData.email,
         password: clientData.password,
-      });
-      toast.success('usuario logado com sucesso');
-      if (response.status === 500) {
-        console.log('usuario nao encontrado');
-      }
-      console.log(response);
-    } catch (error) {
-      console.log('algo deu erro');
-    }
+      }),
+      {
+        pending: 'Verificando dados',
+        success: 'Bem vindo(a)',
+        error: 'Verifique email e senha',
+      },
+    );
   };
-
-  console.log(user);
 
   return (
     <Container>

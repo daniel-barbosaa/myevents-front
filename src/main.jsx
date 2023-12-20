@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <>
       <StyleGlobal />
       <Routes />
-      <ToastContainer />
+      <ToastContainer theme='dark' />
     </>
   </React.StrictMode>,
 );
