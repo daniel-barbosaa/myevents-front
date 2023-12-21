@@ -15,7 +15,6 @@ export const ContainerItem = styled.div`
   width: 400px;
   display: flex;
 
-
   form {
     display: flex;
     flex-direction: column;
@@ -61,6 +60,7 @@ export const Input = styled.input`
 
   &:focus {
     border: 1px solid #7e52de;
+    background: #15151a;
   }
 `;
 

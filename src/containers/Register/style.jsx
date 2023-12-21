@@ -63,6 +63,10 @@ export const Input = styled.input`
 
   &:focus {
     border: 1px solid #7e52de;
+    background-color: #15151a;
+  }
+  &:active {
+    background-color: #15151a;
   }
 `;
 

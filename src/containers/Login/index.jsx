@@ -5,6 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useUser } from '../../hooks/UserContext';
 import {
   Container,
   Text,
@@ -18,9 +19,7 @@ import Ticket from '../../assets/Ticket.svg';
 import { Button } from '../../components';
 
 export function Login() {
-  /* sessão de login, validando se usuario existe ou nao para prosseguir */
-
-  const [user, setUser] = useState([]);
+  const { putUserData, userData } = useUser();
 
   const schema = Yup.object().shape({
     email: Yup.string()
@@ -40,18 +39,37 @@ export function Login() {
   });
 
   const onSubmit = async (clientData) => {
-    const response = await toast.promise(
-      axios.post('http://localhost:3001/session', {
-        email: clientData.email,
-        password: clientData.password,
-      }),
-      {
-        pending: 'Verificando dados',
-        success: 'Bem vindo(a)',
-        error: 'Verifique email e senha',
-      },
-    );
+    try {
+      const { data, status } = await axios.post(
+        'http://localhost:3001/session',
+        {
+          email: clientData.email,
+          password: clientData.password,
+        },
+        {
+          validateStatus: () => true,
+        },
+      );
+
+      if (status === 200 || status === 201) {
+        putUserData(data);
+        toast.success('Seja bem vindo(a)');
+      } else if (status === 404) {
+        toast.error('Usuário não encontrado');
+      } else if (status === 403) {
+        toast.error('Senha incorreta');
+      } else {
+        throw new Error();
+      }
+    } catch (err) {
+      toast.error('Erro no sistema, tente novamente');
+    }
   };
+
+  useEffect(() => {
+    console.log('Dados do usuário atualizados:', userData);
+    // Coloque aqui qualquer lógica que dependa dos dados do usuário
+  }, [userData]);
 
   return (
     <Container>
