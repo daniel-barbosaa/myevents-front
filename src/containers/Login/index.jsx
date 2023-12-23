@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -19,6 +19,7 @@ import Ticket from '../../assets/Ticket.svg';
 import { Button } from '../../components';
 
 export function Login() {
+  const navigate = useNavigate();
   const { putUserData, userData } = useUser();
 
   const schema = Yup.object().shape({
@@ -53,7 +54,10 @@ export function Login() {
 
       if (status === 200 || status === 201) {
         putUserData(data);
-        toast.success('Seja bem vindo(a)');
+        setTimeout(() => {
+          toast.success('Seja bem vindo(a)');
+          navigate('/');
+        }, 1000);
       } else if (status === 404) {
         toast.error('Usuário não encontrado');
       } else if (status === 403) {
@@ -65,11 +69,6 @@ export function Login() {
       toast.error('Erro no sistema, tente novamente');
     }
   };
-
-  useEffect(() => {
-    console.log('Dados do usuário atualizados:', userData);
-    // Coloque aqui qualquer lógica que dependa dos dados do usuário
-  }, [userData]);
 
   return (
     <Container>

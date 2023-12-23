@@ -2,6 +2,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Ticket from '../../assets/ticket-white.svg';
 import { MenuNavigate } from '../MenuNavigate';
+
 import {
   Container,
   H1,
@@ -45,7 +46,11 @@ export function Header({ spacer, login = false, dark = false }) {
           <div>
             <AccountCircleIcon sx={{ color: purpleColor }} fontSize="large" />
           </div>
-          {dark ? <MenuNavigate stylelight dark /> : <MenuNavigate stylelight/>}
+          {dark ? (
+            <MenuNavigate stylelight dark />
+          ) : (
+            <MenuNavigate stylelight />
+          )}
         </ContainerItem>
       )}
     </Container>

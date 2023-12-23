@@ -11,8 +11,10 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import { Text, Container, P } from './style';
+import { useUser } from '../../hooks/UserContext';
 
 export function MenuNavigate({ stylelight = false, dark = false }) {
+  const { userData, userLogOut } = useUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -36,12 +38,12 @@ export function MenuNavigate({ stylelight = false, dark = false }) {
       >
         {dark ? (
           <Text stylelight>
-            Daniel barbosa
+            {userData.name}
             <KeyboardArrowDownIcon />
           </Text>
         ) : (
           <Text>
-            Daniel barbosa
+            {userData.name}
             <KeyboardArrowDownIcon />
           </Text>
         )}
@@ -86,7 +88,12 @@ export function MenuNavigate({ stylelight = false, dark = false }) {
         </MenuItem>
 
         <MenuItem onClick={handleClose}>
-          <P>
+          <P
+            onClick={() => {
+              navigate('/login');
+              userLogOut();
+            }}
+          >
             <ExitToAppOutlinedIcon sx={{ color: purpleColor }} />
             Sair
           </P>

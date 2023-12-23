@@ -1,17 +1,30 @@
 import { useState, useEffect } from 'react';
-import { Container, Title, Image, ContainerItem, P, Carrousel } from './style';
+import {
+  Container,
+  Title,
+  Image,
+  ContainerItem,
+  P,
+  Carrousel,
+  WrapperLoader,
+} from './style';
 import Remind from '../../assets/Remind.svg';
 import apiEventsSympla from '../../services/api';
+import { Loader } from '../Loader';
 
 export function CheckOutCarousel() {
+  const [isLoader, setIsLoader] = useState(false);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     async function loadEvents() {
       try {
-        const { data } = await apiEventsSympla.get('');
-        // Atualizar a data no formato DD apenas para exibição
-        setEvents(data.data);
+        setIsLoader(true);
+        setTimeout(async () => {
+          const { data } = await apiEventsSympla.get('');
+          setIsLoader(false);
+          setEvents(data.data);
+        }, 2000);
       } catch (error) {
         console.error('Erro ao buscar eventos:', error);
       }
@@ -38,19 +51,25 @@ export function CheckOutCarousel() {
           breakPoints={breakPoints}
           style={{ width: '100%' }}
         >
-          {events.map((item) => (
-            <ContainerItem column spacer pointer>
-              <Image src={item.image} alt="" />
-              <ContainerItem column spacer>
-                <P small style={{ fontWeight: 'normal ' }}>
-                  {item.name}
-                </P>
-                <P small style={{ opacity: '0.8' }}>
-                  Ingressos disponiveis
-                </P>
+          {isLoader ? (
+            <WrapperLoader>
+              <Loader />
+            </WrapperLoader>
+          ) : (
+            events.map((item) => (
+              <ContainerItem column spacer pointer key={item.id}>
+                <Image src={item.image} alt="" />
+                <ContainerItem column spacer>
+                  <P small style={{ fontWeight: 'normal ' }}>
+                    {item.name}
+                  </P>
+                  <P small style={{ opacity: '0.8' }}>
+                    Ingressos disponiveis
+                  </P>
+                </ContainerItem>
               </ContainerItem>
-            </ContainerItem>
-          ))}
+            ))
+          )}
         </Carrousel>
       </ContainerItem>
     </Container>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ClipLoader } from 'react-spinners';
 import Carousel from 'react-elastic-carousel';
 
 export const Container = styled.div`
@@ -59,4 +60,10 @@ export const P = styled.p`
     color: #797474;
     margin: 4px 0px 4px 0px;
   }
+`;
+export const WrapperLoader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
 `;

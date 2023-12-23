@@ -60,3 +60,9 @@ export const P = styled.p`
     margin: 4px 0px 4px 0px;
   }
 `;
+export const WrapperLoader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+`;

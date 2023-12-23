@@ -32,7 +32,7 @@ export const Wrape = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 8px;
   box-shadow: 2px 4px 26px 0px rgba(0, 0, 0, 0.31);
 `;
 
@@ -45,7 +45,7 @@ export const Info = styled.div`
 
 export const Image = styled.img`
   width: 50%;
-  border-radius: 20px 0px 0px 20px;
+  border-radius: 8px 0px 0px 8px;
 `;
 
 export const P = styled.p`
@@ -57,4 +57,11 @@ export const P = styled.p`
     color: #797474;
     margin: 4px 0px 4px 0px;
   }
+`;
+
+export const WrapperLoader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
 `;

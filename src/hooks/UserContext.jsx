@@ -14,12 +14,27 @@ export function UserProvider({ children }) {
 
   const putUserData = async (user) => {
     setUser(user);
-
     await localStorage.setItem('myevents:userData', JSON.stringify(user));
   };
 
+  useEffect(() => {
+    const loadUserData = async () => {
+      const clientInfo = await localStorage.getItem('myevents:userData');
+
+      if (clientInfo) {
+        setUser(JSON.parse(clientInfo));
+      }
+    };
+
+    loadUserData();
+  }, []);
+
+  const userLogOut = async () => {
+    await localStorage.removeItem('myevents:userData');
+  };
+
   return (
-    <UserContext.Provider value={{ putUserData, userData }}>
+    <UserContext.Provider value={{ putUserData, userData, userLogOut }}>
       {children}
     </UserContext.Provider>
   );

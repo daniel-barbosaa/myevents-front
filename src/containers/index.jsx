@@ -7,7 +7,6 @@
 export * from './Login';
 export * from './Register';
 export * from './Home';
-export * from './Main';
 export * from './InfoTicket';
 export * from './PaymentForm';
 export * from './Tickets';

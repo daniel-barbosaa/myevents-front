@@ -1,33 +1,43 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
+
 import apiEventsSympla from '../../services/api';
-import { Container, Title, Image, ContainerItem, P, Carrousel } from './style';
+import {
+  Container,
+  Title,
+  Image,
+  ContainerItem,
+  P,
+  Carrousel,
+  WrapperLoader,
+} from './style';
 import Olho from '../../assets/olho.svg';
-import Event from '../../assets/social-event.jpg';
+import { Loader } from '../Loader';
 
 export function MoreSeenCarousel() {
   const [events, setEvents] = useState([]);
+  const [isLoader, setIsLoader] = useState(false);
 
   useEffect(() => {
     async function loadEvents() {
       try {
-        const { data } = await apiEventsSympla.get('');
-
-        // Atualizar a data no formato DD apenas para exibição
-        const updatedEvents = data.data.map((event) => ({
-          ...event,
-          start_date: moment(event.start_date).format('DD'),
-          end_date: moment(event.start_date).format('DD'),
-        }));
-        setEvents(updatedEvents);
+        setIsLoader(true);
+        setTimeout(async () => {
+          const { data } = await apiEventsSympla.get('');
+          const updatedEvents = data.data.map((event) => ({
+            ...event,
+            start_date: moment(event.start_date).format('DD'),
+            end_date: moment(event.start_date).format('DD'),
+          }));
+          setIsLoader(false);
+          setEvents(updatedEvents);
+        }, 2000);
       } catch (error) {
         console.error('Erro ao buscar eventos:', error);
       }
     }
     loadEvents();
   }, []);
-
-  console.log(events);
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -36,7 +46,6 @@ export function MoreSeenCarousel() {
     { width: 900, itemsToShow: 4 },
     { width: 1300, itemsToShow: 5 },
   ];
-
   return (
     <Container>
       <Title>
@@ -48,7 +57,12 @@ export function MoreSeenCarousel() {
           breakPoints={breakPoints}
           style={{ width: '100%' }}
         >
-          {events &&
+          {isLoader ? (
+            <WrapperLoader>
+              <Loader />
+            </WrapperLoader>
+          ) : (
+            events &&
             events.map((item) => (
               <ContainerItem column spacer pointer key={item.id}>
                 <Image src={item.image} alt="" />
@@ -62,7 +76,8 @@ export function MoreSeenCarousel() {
                   </P>
                 </ContainerItem>
               </ContainerItem>
-            ))}
+            ))
+          )}
         </Carrousel>
       </ContainerItem>
     </Container>

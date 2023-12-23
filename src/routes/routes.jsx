@@ -7,7 +7,6 @@ import {
   Login,
   Register,
   Home,
-  Main,
   InfoTicket,
   PaymentForm,
   Tickets,
@@ -20,7 +19,7 @@ function routes() {
         <Route path={paths.Login} element={<Login />} />
         <Route path={paths.Register} element={<Register />} />
         <Route path={paths.Home} element={<Home />} />
-        <Route path={paths.Main} element={<Main />} />
+
         <Route path={paths.InfoTickets} element={<InfoTicket />} />
         <Route path={paths.PaymentForm} element={<PaymentForm />} />
         <Route path={paths.MyTickets} element={<Tickets />} />
