@@ -20,7 +20,7 @@ import { Button } from '../../components';
 
 export function Login() {
   const navigate = useNavigate();
-  const { putUserData, userData } = useUser();
+  const { putUserData } = useUser();
 
   const schema = Yup.object().shape({
     email: Yup.string()

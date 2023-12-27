@@ -6,6 +6,13 @@ import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import moment from 'moment';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import parse from 'html-react-parser';
+
+import { useCart } from '../../hooks/TicketContext';
+
 import {
   Container,
   Text,
@@ -19,10 +26,18 @@ import {
   WrapperIngress,
 } from './style';
 import UndrawImg from '../../assets/undraw-happy.svg';
-import { Header, Button, Footer } from '../../components';
+import { Header, Button } from '../../components';
 
 export function InfoTicket() {
+  const { putOrderTicket, orderTicket } = useCart();
+  const location = useLocation();
+  const { state } = location;
+  const [ticketData, setTicketData] = useState(state.item);
+
+  console.log(orderTicket);
+
   const purpleColor = '#7E52DE';
+
   return (
     <Container>
       <Header dark />
@@ -31,30 +46,24 @@ export function InfoTicket() {
       </ContainerItem>
       <ContainerItem>
         <div style={{ width: '350px' }}>
-          <Text spacer>SUNSET-NIGHT</Text>
+          <Text spacer>{ticketData.name}</Text>
           <P>
             <CalendarTodayOutlinedIcon
               sx={{ color: purpleColor }}
               fontSize="small"
             />{' '}
-            09 de janeiro de 2023, 17:00
+            {moment(ticketData.start_date).format('DD/MM/YYYY HH:mm')}
           </P>
           <P>
             <LocationOnOutlinedIcon
               sx={{ color: purpleColor }}
               fontSize="small"
             />{' '}
-            Avenida lafetá celestino 433 - Villa Ipiranga Montes claros - Minas
-            Gerais
+            {ticketData.address.address}
           </P>
           <div style={{ marginTop: '30px' }}>
-            <Text desc> Descrição</Text>
-            <P spacetop>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-              dolor, et eum iure incidunt amet omnis quasi quibusdam rerum
-              consequatur harum vel sunt, nemo ullam iste odio minima, illum
-              molestias.
-            </P>
+            <Text desc>Descrição</Text>
+            <P spacetop>{parse(ticketData.detail)}</P>
           </div>
         </div>
 
@@ -117,7 +126,14 @@ export function InfoTicket() {
                 />
                 R$ 360,00
               </Text>
-              <Button fontlight>FINALIZAR PEDIDO</Button>
+              <Button
+                fontlight
+                onClick={() => {
+                  putOrderTicket(ticketData);
+                }}
+              >
+                FINALIZAR PEDIDO
+              </Button>
             </WrapperIngress>
           </ContainerItem>
         </div>

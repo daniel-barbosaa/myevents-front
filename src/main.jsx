@@ -5,15 +5,15 @@ import Routes from './routes/routes';
 import { Info } from './containers/Register/style';
 import StyleGlobal from './styles/globalStyles';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { UserProvider } from './hooks/UserContext';
+import AppProvider from './hooks';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <>
       <StyleGlobal />
-      <UserProvider>
+      <AppProvider>
         <Routes />
-      </UserProvider>
+      </AppProvider>
       <ToastContainer theme="dark" />
     </>
   </React.StrictMode>,

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
 import apiEventsSympla from '../../services/api';
 import {
@@ -15,8 +16,13 @@ import Olho from '../../assets/olho.svg';
 import { Loader } from '../Loader';
 
 export function MoreSeenCarousel() {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
+
+  const handleItemClick = (item) => {
+    navigate('/informacao-evento', { state: { item } });
+  };
 
   useEffect(() => {
     async function loadEvents() {
@@ -26,8 +32,8 @@ export function MoreSeenCarousel() {
           const { data } = await apiEventsSympla.get('');
           const updatedEvents = data.data.map((event) => ({
             ...event,
-            start_date: moment(event.start_date).format('DD'),
-            end_date: moment(event.start_date).format('DD'),
+            date_start: moment(event.start_date).format('DD'),
+            date_end: moment(event.start_date).format('DD'),
           }));
           setIsLoader(false);
           setEvents(updatedEvents);
@@ -64,11 +70,19 @@ export function MoreSeenCarousel() {
           ) : (
             events &&
             events.map((item) => (
-              <ContainerItem column spacer pointer key={item.id}>
+              <ContainerItem
+                column
+                spacer
+                pointer
+                key={item.id}
+                onClick={() => {
+                  handleItemClick(item);
+                }}
+              >
                 <Image src={item.image} alt="" />
                 <ContainerItem column spacer>
                   <P purple small style={{ fontWeight: 'bold' }}>
-                    {item.start_date} JAN <i>{'>'}</i> {item.end_date} JAN
+                    {item.date_start} JAN <i>{'>'}</i> {item.date_end} JAN
                   </P>
                   <P>{item.name}</P>
                   <P small light>
