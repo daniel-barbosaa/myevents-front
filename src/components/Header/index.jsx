@@ -1,5 +1,6 @@
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from 'react-router-dom';
 import Ticket from '../../assets/ticket-white.svg';
 import { MenuNavigate } from '../MenuNavigate';
 
@@ -13,6 +14,7 @@ import {
 } from './style';
 
 export function Header({ spacer, login = false, dark = false }) {
+  const navigate = useNavigate();
   const purpleColor = '#7E52DE';
   return (
     <Container spacer stylelight>
@@ -35,7 +37,13 @@ export function Header({ spacer, login = false, dark = false }) {
               style={{ color: '#7E52DE' }}
               fontSize="medium"
             />
-            <Text>ENTRAR</Text>
+            <Text
+              onClick={() => {
+                navigate('/login');
+              }}
+            >
+              ENTRAR
+            </Text>
           </WrapperLogin>
           <WrapperRegister>
             <Text>CRIAR CONTA</Text>

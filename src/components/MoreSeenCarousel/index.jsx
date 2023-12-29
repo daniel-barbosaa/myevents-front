@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../hooks/TicketContext';
 
 import apiEventsSympla from '../../services/api';
 import {
@@ -16,12 +17,15 @@ import Olho from '../../assets/olho.svg';
 import { Loader } from '../Loader';
 
 export function MoreSeenCarousel() {
+  const { putOrderTicket } = useCart();
+  const priceRandom = Math.floor(Math.random() * (80 - 20 + 1)) + 20;
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [isLoader, setIsLoader] = useState(false);
 
   const handleItemClick = (item) => {
-    navigate('/informacao-evento', { state: { item } });
+    navigate('/informacao-evento');
+    putOrderTicket(item);
   };
 
   useEffect(() => {
@@ -34,6 +38,7 @@ export function MoreSeenCarousel() {
             ...event,
             date_start: moment(event.start_date).format('DD'),
             date_end: moment(event.start_date).format('DD'),
+            price: priceRandom,
           }));
           setIsLoader(false);
           setEvents(updatedEvents);

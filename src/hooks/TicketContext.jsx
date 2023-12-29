@@ -6,22 +6,46 @@ const TicketContext = createContext({});
 export function CartProvider({ children }) {
   const [orderTicket, setOrderTicket] = useState([]);
 
-  const putOrderTicket = async (ticket) => {
-    const priceRandom = Math.floor(Math.random() * (80 - 20 + 1)) + 20;
+  const updateLocalStorage = async (ticket) => {
+    await localStorage.setItem('myevents:ticketInfo', JSON.stringify(ticket));
+  };
 
+  const putOrderTicket = async (ticket) => {
     const updateDate = [
       {
         ...ticket,
         quantity: 1,
-        price: priceRandom,
       },
     ];
     setOrderTicket(updateDate);
 
-    await localStorage.setItem(
-      'myevents:ticketInfo',
-      JSON.stringify(orderTicket),
-    );
+    await updateLocalStorage(updateDate);
+  };
+
+  const increaseOrder = async (ticket) => {
+    const updateTicket = [
+      {
+        ...ticket,
+        quantity: ticket.quantity + 1,
+      },
+    ];
+    setOrderTicket(updateTicket);
+    await updateLocalStorage(updateTicket);
+  };
+
+  const decreaseOrder = async (ticket) => {
+    if (ticket.quantity > 1) {
+      const updateTicket = [
+        {
+          ...ticket,
+          quantity: ticket.quantity - 1,
+        },
+      ];
+      setOrderTicket(updateTicket);
+      await updateLocalStorage(updateTicket);
+    }
+
+    return ticket;
   };
 
   useEffect(() => {
@@ -41,7 +65,15 @@ export function CartProvider({ children }) {
   };
 
   return (
-    <TicketContext.Provider value={{ putOrderTicket, orderTicket, userLogOut }}>
+    <TicketContext.Provider
+      value={{
+        putOrderTicket,
+        orderTicket,
+        userLogOut,
+        increaseOrder,
+        decreaseOrder,
+      }}
+    >
       {children}
     </TicketContext.Provider>
   );

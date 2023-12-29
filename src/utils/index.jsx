@@ -57,4 +57,10 @@ export default {
       label: 'Religião e Espiritualidade',
     },
   ],
+
+  formatCurrency: (value) =>
+    new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(value),
 };
