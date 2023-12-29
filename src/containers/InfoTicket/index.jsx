@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
@@ -11,6 +10,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import moment from 'moment';
 import { useLocation } from 'react-router-dom';
 import parse from 'html-react-parser';
+import { useEffect, useState } from 'react';
 import formatCurrency from '../../utils/formatedCurrency';
 
 import { useCart } from '../../hooks/TicketContext';
@@ -33,23 +33,23 @@ import { Header, Button } from '../../components';
 /* COLOCAR PARA FUNCIONAR OS BOTOES DE AUMENTAR E RETIRAR INGRESSOS */
 
 export function InfoTicket() {
+  const [finalPricer, setFinalPrice] = useState(0);
   const { orderTicket, increaseOrder, decreaseOrder } = useCart();
-  const location = useLocation();
-  const { state } = location;
-  // const [ticketData, setTicketData] = useState(state.item);
+  const [tax] = useState(10.2);
 
-  const taxa = 10.2;
   const clientInfoData = localStorage.getItem('myevents:ticketInfo');
   const ticket = JSON.parse(clientInfoData);
-  // const ticketData = ticket[0];
-  // console.log(ticketData.quantity);
-
-  // const valueTotal = ticketData.price + ticket.quantity;
-
   const valueTotal = ticket[0].quantity * ticket[0].price;
-  console.log(valueTotal);
-
   const purpleColor = '#7E52DE';
+
+  useEffect(() => {
+    const sumAll = ticket.reduce(
+      (acc, current) => current.price * current.quantity + acc,
+      0,
+    );
+
+    setFinalPrice(formatCurrency(sumAll + tax));
+  }, [ticket, tax]);
 
   return (
     <Container>
@@ -100,8 +100,8 @@ export function InfoTicket() {
                     <Title bold>MEIA ENTRADA PARA TODOS</Title>
                     <Title bold>1</Title>
                     <Title small>
-                      {formatCurrency(ticket.price)} + ({formatCurrency(taxa)}{' '}
-                      de taxa)
+                      {formatCurrency(ticket.price)} + ({formatCurrency(tax)} de
+                      taxa)
                     </Title>
                   </div>
                   <ButtonAdd>
@@ -153,7 +153,7 @@ export function InfoTicket() {
                       sx={{ color: '#7e5ede' }}
                       fontSize="large"
                     />
-                    {formatCurrency(valueTotal)}
+                    {finalPricer}
                   </Text>
                   <Button fontlight>FINALIZAR PEDIDO</Button>
                 </WrapperIngress>
