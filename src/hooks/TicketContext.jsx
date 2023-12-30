@@ -48,6 +48,18 @@ export function CartProvider({ children }) {
     return ticket;
   };
 
+  const finalTicket = async (ticket) => {
+    const updateDate = [
+      {
+        ...ticket,
+        quantity: 1,
+      },
+    ];
+    setOrderTicket(updateDate);
+
+    await updateLocalStorage(updateDate);
+  };
+
   useEffect(() => {
     const loadUserData = async () => {
       const clientInfoData = await localStorage.getItem('myevents:ticketInfo');

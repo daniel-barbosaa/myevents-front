@@ -117,3 +117,8 @@ export const WrapperIngress = styled.div`
   border-bottom: ${(props) =>
     props.bordernone ? 'none' : '1px dashed #C8C3C1'};
 `;
+
+export const Checked = styled.input`
+  border: 20px;
+  
+`;
