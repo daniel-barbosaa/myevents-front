@@ -70,7 +70,7 @@ export function MoreSeenCarousel() {
         >
           {isLoader ? (
             <WrapperLoader>
-              <Loader />
+              <Loader color="#7e5ede" />
             </WrapperLoader>
           ) : (
             events &&

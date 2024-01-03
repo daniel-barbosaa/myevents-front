@@ -53,7 +53,7 @@ export function CheckOutCarousel() {
         >
           {isLoader ? (
             <WrapperLoader>
-              <Loader />
+              <Loader color="#7e5ede" />
             </WrapperLoader>
           ) : (
             events.map((item) => (
