@@ -13,6 +13,7 @@ import moment from 'moment';
 import parse from 'html-react-parser';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import formatCurrency from '../../utils/formatedCurrency';
 
 import { useCart } from '../../hooks/TicketContext';
@@ -33,15 +34,25 @@ import UndrawImg from '../../assets/undraw-happy.svg';
 import { Header, Button } from '../../components';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-/**/
+/* MANDAR DADOS DO PEDIDO PARA TELA DE PAGAMENTO */
 
 export function InfoTicket() {
-  const { orderTicket, increaseOrder, decreaseOrder } = useCart();
+  const navigate = useNavigate();
+  const { orderTicket, increaseOrder, decreaseOrder, orderTicketWithParking } =
+    useCart();
   const [discountInput, setDiscount] = useState('BORABIL'.toUpperCase());
   const [finalPrice, setFinalPrice] = useState(0);
   const [tax] = useState(10.2);
   const [parking, setParking] = useState(false);
   const [withDiscount, setWithDiscount] = useState(false);
+
+  const updateTicket = (parking) => {
+    orderTicketWithParking(parking);
+  };
+
+  const handleParkingChange = () => {
+    setParking((parking) => !parking);
+  };
 
   const clientInfoData = localStorage.getItem('myevents:ticketInfo');
   const ticket = JSON.parse(clientInfoData);
@@ -78,8 +89,10 @@ export function InfoTicket() {
     }
   }, [ticket, tax, parking, discountInput]);
 
-  const handleParkingChange = () => {
-    setParking((prevParking) => !prevParking);
+  const upateTicket = () => {
+    if (parking === true) {
+      orderTicketWithParking();
+    }
   };
 
   return (
@@ -167,9 +180,11 @@ export function InfoTicket() {
                   <div>
                     <Checkbox
                       {...label}
-                      defaultChecked={parking}
                       onChange={handleParkingChange}
                       color="default"
+                      onClick={() => {
+                        updateTicket(parking);
+                      }}
                     />
                   </div>
                 </WrapperIngress>
@@ -201,7 +216,14 @@ export function InfoTicket() {
                     />
                     {formatCurrency(finalPrice)}
                   </Text>
-                  <Button fontlight>FINALIZAR PEDIDO</Button>
+                  <Button
+                    fontlight
+                    onClick={() => {
+                      navigate('/pagamento', { state: finalPrice });
+                    }}
+                  >
+                    FINALIZAR PEDIDO
+                  </Button>
                 </WrapperIngress>
               </ContainerItem>
             </div>

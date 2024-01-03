@@ -23,13 +23,6 @@ import { Button } from '../../components';
 
 // 6LcvmRYpAAAAAMZwyQmXuDJ_z6hoUGXQSZlidWXY
 
-
-// PRIMEIRO
-/* MUDAR AS MENSAGENS DE ERRO COM TOASTS NA TELA DE LOGIN */
-
-// SEGUNDO
-/* parei na parte de salvar o usuario criado em um context utilizando o useContext */
-
 export function Register() {
   const [capVal, setCapVal] = useState(null);
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Calendar } from 'primereact/calendar';
+import 'react-credit-cards-2/dist/es/styles-compiled.css';
+import InputMask from 'react-input-mask';
 
 export const Container = styled.div`
   display: flex;
@@ -80,7 +81,7 @@ export const Title = styled.p`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled(InputMask)`
   width: 100%;
   border: none;
   height: 40px;

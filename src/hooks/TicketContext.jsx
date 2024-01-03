@@ -22,6 +22,28 @@ export function CartProvider({ children }) {
     await updateLocalStorage(updateDate);
   };
 
+  const orderTicketWithParking = async (parking) => {
+    if (parking === true) {
+      const updateDate = [
+        {
+          ...orderTicket[0],
+          estacionamento: false,
+        },
+      ];
+      setOrderTicket(updateDate);
+      await updateLocalStorage(updateDate);
+    } else if (parking === false) {
+      const updateDate = [
+        {
+          ...orderTicket[0],
+          estacionamento: true,
+        },
+      ];
+      setOrderTicket(updateDate);
+      await updateLocalStorage(updateDate);
+    }
+  };
+
   const increaseOrder = async (ticket) => {
     const updateTicket = [
       {
@@ -48,18 +70,6 @@ export function CartProvider({ children }) {
     return ticket;
   };
 
-  const finalTicket = async (ticket) => {
-    const updateDate = [
-      {
-        ...ticket,
-        quantity: 1,
-      },
-    ];
-    setOrderTicket(updateDate);
-
-    await updateLocalStorage(updateDate);
-  };
-
   useEffect(() => {
     const loadUserData = async () => {
       const clientInfoData = await localStorage.getItem('myevents:ticketInfo');
@@ -84,6 +94,7 @@ export function CartProvider({ children }) {
         userLogOut,
         increaseOrder,
         decreaseOrder,
+        orderTicketWithParking,
       }}
     >
       {children}
