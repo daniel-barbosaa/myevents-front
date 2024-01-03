@@ -90,6 +90,8 @@ export const Input = styled(InputMask)`
   color: #020202;
   background: #c8c3c14e;
   margin-bottom: 15px;
+  border: ${(props) => (props.error ? '1px solid #ff0000' : 'none')};
+
 
   &:focus {
     border: 1px solid #afabaa;

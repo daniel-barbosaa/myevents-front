@@ -71,7 +71,7 @@ export function CartProvider({ children }) {
   };
 
   useEffect(() => {
-    const loadUserData = async () => {
+    const loadTicketData = async () => {
       const clientInfoData = await localStorage.getItem('myevents:ticketInfo');
 
       if (clientInfoData) {
@@ -79,7 +79,7 @@ export function CartProvider({ children }) {
       }
     };
 
-    loadUserData();
+    loadTicketData();
   }, []);
 
   const userLogOut = async () => {
