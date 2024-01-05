@@ -26,7 +26,7 @@ import {
   PaymentWrapper,
 } from './style';
 
-/* exibir mensagem de compra feita com sucesso e levar ate pagina de ingresso */
+/* integrar a api na tela de ingresso  */
 
 export function PaymentForm() {
   const [paymentConfirmed, setPaymentConfirmed] = useState(true);
@@ -70,7 +70,7 @@ export function PaymentForm() {
     const infoTicket = orderTicket[0];
     try {
       setIsLoader(true);
-      const { state } = await axios.post(
+      const { status } = await axios.post(
         'http://localhost:3001/create-order',
         {
           orderId: userData.id,
@@ -83,13 +83,16 @@ export function PaymentForm() {
           validateStatus: () => true,
         },
       );
-      setInterval(() => {
-        setPaymentConfirmed(false);
-      }, 1000);
+
+      if (status === 200) {
+        setInterval(() => {
+          setPaymentConfirmed(false);
+        }, 1000);
+      }
       setPaymentConfirmed(true);
       setIsLoader(false);
     } catch (err) {
-      throw new Error(err);
+      throw new Error();
     }
   };
 

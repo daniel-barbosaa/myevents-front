@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
 import { Container, Title, ContainerItem, P } from './style';
 import { Button } from '../Button';
+import { useUser } from '../../hooks/UserContext';
 
 export function RegistrationConfirmed() {
+  const { userData } = useUser();
   return (
     <Container>
       <ContainerItem>

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Calendar } from 'primereact/calendar';
 
 export const Container = styled.div`
   display: flex;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
