@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 import {
   Container,
   Title,
@@ -11,10 +13,19 @@ import {
 import Remind from '../../assets/Remind.svg';
 import apiEventsSympla from '../../services/api';
 import { Loader } from '../Loader';
+import { useCart } from '../../hooks/TicketContext';
 
 export function CheckOutCarousel() {
-  const [isLoader, setIsLoader] = useState(false);
+  const { putOrderTicket } = useCart();
+  const priceRandom = Math.floor(Math.random() * (80 - 20 + 1)) + 20;
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
+  const [isLoader, setIsLoader] = useState(false);
+
+  const handleItemClick = (item) => {
+    navigate('/informacao-evento');
+    putOrderTicket(item);
+  };
 
   useEffect(() => {
     async function loadEvents() {
@@ -22,11 +33,17 @@ export function CheckOutCarousel() {
         setIsLoader(true);
         setTimeout(async () => {
           const { data } = await apiEventsSympla.get('');
+          const updatedEvents = data.data.map((event) => ({
+            ...event,
+            date_start: moment(event.start_date).format('DD'),
+            date_end: moment(event.start_date).format('DD'),
+            price: priceRandom,
+          }));
           setIsLoader(false);
-          setEvents(data.data);
+          setEvents(updatedEvents);
         }, 2000);
       } catch (error) {
-        console.error('Erro ao buscar eventos:', error);
+        console.error('Erro ao buscar ingressos:', error);
       }
     }
     loadEvents();
@@ -57,7 +74,15 @@ export function CheckOutCarousel() {
             </WrapperLoader>
           ) : (
             events.map((item) => (
-              <ContainerItem column spacer pointer key={item.id}>
+              <ContainerItem
+                column
+                spacer
+                pointer
+                key={item.id}
+                onClick={() => {
+                  handleItemClick(item);
+                }}
+              >
                 <Image src={item.image} alt="" />
                 <ContainerItem column spacer>
                   <P small style={{ fontWeight: 'normal ' }}>

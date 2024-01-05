@@ -17,6 +17,14 @@ export function MenuNavigate({ stylelight = false, dark = false }) {
   const { userData, userLogOut } = useUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const haveIngress = () => {
+    const storedTicket = localStorage.getItem('clientTickets');
+    if (storedTicket) {
+      localStorage.removeItem('clientTickets');
+    }
+  };
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -62,7 +70,7 @@ export function MenuNavigate({ stylelight = false, dark = false }) {
           <MenuItem onClick={handleClose}>
             <P
               onClick={() => {
-                navigate('/main');
+                navigate('/');
               }}
             >
               <HomeOutlinedIcon sx={{ color: purpleColor }} />
@@ -92,6 +100,7 @@ export function MenuNavigate({ stylelight = false, dark = false }) {
             onClick={() => {
               navigate('/login');
               userLogOut();
+              haveIngress();
             }}
           >
             <ExitToAppOutlinedIcon sx={{ color: purpleColor }} />
