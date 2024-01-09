@@ -35,7 +35,7 @@ function routes() {
         <Route
           path={paths.Home}
           element={
-            <PrivateRoute logged>
+            <PrivateRoute logged path={paths.Home}>
               <Home />
             </PrivateRoute>
           }

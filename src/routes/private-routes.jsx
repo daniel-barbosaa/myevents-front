@@ -8,6 +8,7 @@ export function PrivateRoute({ children, logged, path }) {
   if (logged && !user) {
     return <Navigate to="/eventos" />;
   }
+
   if (path === '/login' && user) {
     return <Navigate to="/" />;
   }

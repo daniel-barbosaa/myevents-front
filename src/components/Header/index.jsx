@@ -32,20 +32,22 @@ export function Header({ spacer, login = false, dark = false }) {
       )}
       {login ? (
         <ContainerItem>
-          <WrapperLogin>
+          <WrapperLogin
+            onClick={() => {
+              navigate('/login');
+            }}
+          >
             <PersonOutlineOutlinedIcon
               style={{ color: '#7E52DE' }}
               fontSize="medium"
             />
-            <Text
-              onClick={() => {
-                navigate('/login');
-              }}
-            >
-              ENTRAR
-            </Text>
+            <Text>ENTRAR</Text>
           </WrapperLogin>
-          <WrapperRegister>
+          <WrapperRegister
+            onClick={() => {
+              navigate('/registrar');
+            }}
+          >
             <Text>CRIAR CONTA</Text>
           </WrapperRegister>
         </ContainerItem>

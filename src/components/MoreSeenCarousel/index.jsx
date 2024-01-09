@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import moment from 'moment';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../../hooks/TicketContext';
 
 import apiEventsSympla from '../../services/api';
@@ -17,6 +18,9 @@ import Olho from '../../assets/olho.svg';
 import { Loader } from '../Loader';
 
 export function MoreSeenCarousel() {
+  const location = useLocation();
+  const pathAtual = location.pathname;
+
   const { putOrderTicket } = useCart();
   const priceRandom = Math.floor(Math.random() * (80 - 20 + 1)) + 20;
   const navigate = useNavigate();
@@ -24,8 +28,12 @@ export function MoreSeenCarousel() {
   const [isLoader, setIsLoader] = useState(false);
 
   const handleItemClick = (item) => {
-    navigate('/informacao-evento');
-    putOrderTicket(item);
+    if (pathAtual === '/eventos') {
+      toast.info('Faça login ou cadastre-se');
+    } else {
+      navigate('/informacao-evento');
+      putOrderTicket(item);
+    }
   };
 
   useEffect(() => {
