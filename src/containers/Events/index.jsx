@@ -4,11 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { Container } from './style';
 import {
   Header,
-  ListCategory,
   MoreSeenCarousel,
   AutomaticCarousel,
   Footer,
 } from '../../components';
+
+/* Glória a Deus */
 
 export function Events() {
   return (
