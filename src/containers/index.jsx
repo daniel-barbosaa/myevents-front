@@ -10,3 +10,4 @@ export * from './Home';
 export * from './InfoTicket';
 export * from './PaymentForm';
 export * from './Tickets';
+export * from './Events';

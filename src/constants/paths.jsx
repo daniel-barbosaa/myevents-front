@@ -5,6 +5,7 @@ const paths = {
   InfoTickets: '/informacao-evento',
   PaymentForm: '/pagamento',
   MyTickets: '/meus-ingressos',
+  Events: '/eventos',
 };
 
 export default paths;

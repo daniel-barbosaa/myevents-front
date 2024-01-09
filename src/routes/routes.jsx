@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import paths from '../constants/paths';
-
+import { PrivateRoute } from './private-routes';
 import {
   Login,
   Register,
   Home,
+  Events,
   InfoTicket,
   PaymentForm,
   Tickets,
@@ -16,13 +16,62 @@ function routes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={paths.Login} element={<Login />} />
-        <Route path={paths.Register} element={<Register />} />
-        <Route path={paths.Home} element={<Home />} />
-
-        <Route path={paths.InfoTickets} element={<InfoTicket />} />
-        <Route path={paths.PaymentForm} element={<PaymentForm />} />
-        <Route path={paths.MyTickets} element={<Tickets />} />
+        <Route
+          path={paths.Login}
+          element={
+            <PrivateRoute path={paths.Login}>
+              <Login />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={paths.Register}
+          element={
+            <PrivateRoute path={paths.Register}>
+              <Register />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={paths.Home}
+          element={
+            <PrivateRoute logged>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={paths.Events}
+          element={
+            <PrivateRoute path={paths.Events}>
+              <Events />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={paths.InfoTickets}
+          element={
+            <PrivateRoute path={paths.InfoTickets}>
+              <InfoTicket />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={paths.PaymentForm}
+          element={
+            <PrivateRoute path={paths.PaymentForm}>
+              <PaymentForm />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={paths.MyTickets}
+          element={
+            <PrivateRoute path={paths.MyTickets}>
+              <Tickets />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

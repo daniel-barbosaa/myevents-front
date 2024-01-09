@@ -98,7 +98,7 @@ export function MenuNavigate({ stylelight = false, dark = false }) {
         <MenuItem onClick={handleClose}>
           <P
             onClick={() => {
-              navigate('/login');
+              navigate('/eventos');
               userLogOut();
               haveIngress();
             }}

@@ -1,13 +1,5 @@
 import CircumIcon from '@klarr-agency/circum-icons-react';
-import {
-  Container,
-  Title,
-  ContainerItem,
-  P,
-  Image,
-  WraperIcon,
-  Line,
-} from './style';
+import { Container, ContainerItem, P, Image, WraperIcon, Line } from './style';
 import Ticket from '../../assets/Ticket.svg';
 
 export function Footer() {
