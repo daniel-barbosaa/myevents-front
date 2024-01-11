@@ -23,14 +23,13 @@ export function AutomaticCarousel() {
     async function loadEvents() {
       try {
         setIsLoader(true);
-        setTimeout(async () => {
-          const { data } = await apiEventsSympla.get('');
-          setIsLoader(false);
-          setEvents(data.data);
-        }, 1000);
+        const { data } = await apiEventsSympla.get('');
+        setIsLoader(false);
+        setEvents(data.data);
         setisSlider(true);
       } catch (error) {
-        console.error('Erro ao buscar eventos:', error);
+        throw new Error(error);
+        // console.error('Erro ao buscar eventos:', error);
       }
     }
     loadEvents();
@@ -49,7 +48,7 @@ export function AutomaticCarousel() {
       </Title>
       {isLoader ? (
         <WrapperLoader>
-          <Loader />
+          <Loader color="#ffffff" />
         </WrapperLoader>
       ) : (
         isSlider && (
@@ -59,13 +58,19 @@ export function AutomaticCarousel() {
                 <Wrape>
                   <Image src={item.image} />
                   <Info>
-                    <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                    <P
+                      purple="true"
+                      style={{ fontSize: '20px', fontWeight: 'bold' }}
+                    >
                       Não perca!
                     </P>
                     <P style={{ fontSize: '20px', fontWeight: 'bold' }}>
                       Não fique de fora!
                     </P>
-                    <P purple style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                    <P
+                      purple="true"
+                      style={{ fontSize: '20px', fontWeight: 'bold' }}
+                    >
                       Venha e participe!
                     </P>
                     <P style={{ fontSize: '20px', fontWeight: 'bold' }}>

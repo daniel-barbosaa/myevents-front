@@ -17,7 +17,7 @@ export function Header({ spacer, login = false, dark = false }) {
   const navigate = useNavigate();
   const purpleColor = '#7E52DE';
   return (
-    <Container spacer stylelight>
+    <Container spacer="true" stylelight="true">
       {login ? (
         <H1>MyEvents</H1>
       ) : (
@@ -52,14 +52,14 @@ export function Header({ spacer, login = false, dark = false }) {
           </WrapperRegister>
         </ContainerItem>
       ) : (
-        <ContainerItem space>
+        <ContainerItem space="true">
           <div>
             <AccountCircleIcon sx={{ color: purpleColor }} fontSize="large" />
           </div>
           {dark ? (
-            <MenuNavigate stylelight dark />
+            <MenuNavigate stylelight="true" dark="true" />
           ) : (
-            <MenuNavigate stylelight />
+            <MenuNavigate stylelight="true" />
           )}
         </ContainerItem>
       )}

@@ -92,7 +92,6 @@ export const Input = styled(InputMask)`
   margin-bottom: 15px;
   border: ${(props) => (props.error ? '1px solid #ff0000' : 'none')};
 
-
   &:focus {
     border: 1px solid #afabaa;
   }

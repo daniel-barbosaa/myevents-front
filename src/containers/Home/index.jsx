@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from 'react';
+import { StyleSheetManager } from 'styled-components';
 import { Container } from './style';
 import {
   Header,
@@ -10,12 +11,20 @@ import {
   Footer,
 } from '../../components';
 
-/*
-  Criar rota privada, se o usuário estiver logado nao permitir ele ir para rota de login, register, home não logado da aplicação
-*/
-
 export function Home() {
   const [loggedUser, setLoggerUser] = useState(false);
+  const filteredProps = [
+    'isRTL',
+    'verticalMode',
+    'sliderPosition',
+    'swipedSliderPosition',
+    'isSwiping',
+    'transitionMs',
+    'tiltEasing',
+    'outerSpacing',
+    'active',
+    'itemPosition',
+  ];
 
   const userLogged = async () => {
     const clientInfo = await localStorage.getItem('myevents:userData');
@@ -28,12 +37,20 @@ export function Home() {
 
   return (
     <Container>
-      {loggedUser ? <Header spacer /> : <Header spacer login />}
-      <ListCategory />
-      <MoreSeenCarousel />
-      {loggedUser && <CheckOutCarousel />}
-      <AutomaticCarousel />
-      <Footer />
+      <StyleSheetManager
+        shouldForwardProp={(prop) => !filteredProps.includes(prop)}
+      >
+        {loggedUser ? (
+          <Header spacer="true" />
+        ) : (
+          <Header spacer="true" login="true" />
+        )}
+        <ListCategory />
+        <MoreSeenCarousel />
+        {loggedUser && <CheckOutCarousel />}
+        <AutomaticCarousel />
+        <Footer />
+      </StyleSheetManager>
     </Container>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import {
   Container,
@@ -31,17 +31,16 @@ export function CheckOutCarousel() {
     async function loadEvents() {
       try {
         setIsLoader(true);
-        setTimeout(async () => {
-          const { data } = await apiEventsSympla.get('');
-          const updatedEvents = data.data.map((event) => ({
-            ...event,
-            date_start: moment(event.start_date).format('DD'),
-            date_end: moment(event.start_date).format('DD'),
-            price: priceRandom,
-          }));
-          setIsLoader(false);
-          setEvents(updatedEvents);
-        }, 2000);
+
+        const { data } = await apiEventsSympla.get('');
+        const updatedEvents = data.data.map((event) => ({
+          ...event,
+          date_start: moment(event.start_date).format('DD'),
+          date_end: moment(event.start_date).format('DD'),
+          price: priceRandom,
+        }));
+        setIsLoader(false);
+        setEvents(updatedEvents);
       } catch (error) {
         console.error('Erro ao buscar ingressos:', error);
       }
@@ -70,25 +69,25 @@ export function CheckOutCarousel() {
         >
           {isLoader ? (
             <WrapperLoader>
-              <Loader color="#7e5ede" />
+              <Loader color="#ffffff" />
             </WrapperLoader>
           ) : (
             events.map((item) => (
               <ContainerItem
-                column
-                spacer
-                pointer
+                column="true"
+                spacer="true"
+                pointer="true"
                 key={item.id}
                 onClick={() => {
                   handleItemClick(item);
                 }}
               >
                 <Image src={item.image} alt="" />
-                <ContainerItem column spacer>
-                  <P small style={{ fontWeight: 'normal ' }}>
+                <ContainerItem column="true" spacer="true">
+                  <P small="true" style={{ fontWeight: 'normal ' }}>
                     {item.name}
                   </P>
-                  <P small style={{ opacity: '0.8' }}>
+                  <P small="true" style={{ opacity: '0.8' }}>
                     Ingressos disponiveis
                   </P>
                 </ContainerItem>

@@ -6,18 +6,18 @@ export function Footer() {
   const socialIcons = ['facebook', 'twitter', 'instagram', 'linkedin'];
 
   return (
-    <Container spacer>
+    <Container spacer="true">
       <ContainerItem>
         <Image src={Ticket} />
         <WraperIcon>
           {socialIcons.map((icon) => (
-            <i>
+            <i key={icon}>
               <CircumIcon name={icon} size="40px" />
             </i>
           ))}
         </WraperIcon>
       </ContainerItem>
-      <ContainerItem column>
+      <ContainerItem column="true">
         <Line />
         <P>MyEvents Soluções © Copyright 2023 </P>
       </ContainerItem>

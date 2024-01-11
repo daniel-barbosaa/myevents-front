@@ -2,7 +2,8 @@
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 import moment from 'moment';
 import axios from 'axios';
 import Cards from 'react-credit-cards-2';
@@ -13,7 +14,12 @@ import { Loader } from '../../components/Loader';
 import { useCart } from '../../hooks/TicketContext';
 import { useUser } from '../../hooks/UserContext';
 import formatCurrency from '../../utils/formatedCurrency';
-import { RegistrationConfirmed, Header, Button } from '../../components';
+import {
+  RegistrationConfirmed,
+  Header,
+  Button,
+  PropsFilterError,
+} from '../../components';
 import {
   Container,
   Text,
@@ -58,12 +64,13 @@ export function PaymentForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
+  const meuRef = useRef();
   useEffect(() => {
     setValue('number', watch('number', ''));
     setValue('name', watch('name', ''));
     setValue('expiry', watch('expiry', ''));
     setValue('cvc', watch('cvc', ''));
+    const node = meuRef.current;
   }, [watch, setValue]);
 
   const onSubmit = async () => {
@@ -98,140 +105,148 @@ export function PaymentForm() {
 
   return (
     <Container>
-      <Header dark />
-      {paymentConfirmed ? (
-        <ContainerItem gap align>
-          {orderTicket &&
-            orderTicket.map((ticket) => (
-              <ContainerItem key={ticket.id} column background shadow spacetop>
-                <WrapperIngress column>
-                  {' '}
-                  <Text spacer>{ticket.name}</Text>
-                  <P>
-                    <CalendarTodayOutlinedIcon
-                      sx={{ color: purpleColor }}
-                      fontSize="small"
-                    />{' '}
-                    {moment(ticket.start_date).format('DD/MM/YYYY HH:mm')}
-                  </P>
-                  <P spacetop>
-                    <LocationOnOutlinedIcon
-                      sx={{ color: purpleColor }}
-                      fontSize="small"
-                    />{' '}
-                    {ticket.address.address}
-                  </P>
-                </WrapperIngress>
-                <WrapperIngress column>
-                  <Text border padding spacer>
-                    Resumo da compra
-                  </Text>
-                  <P spacetop>{ticket.name}</P>
-                </WrapperIngress>
-                <WrapperIngress column>
-                  <Title bold>
-                    {ticket.quantity}x Ingresso{' '}
-                    <i>{formatCurrency(ticket.price * ticket.quantity)}</i>
-                  </Title>
-                  <Title bold>
-                    Taxa <i>R$10,20</i>
-                  </Title>
-                  {ticket.estacionamento && (
-                    <Title bold>
-                      Estacionamento <i>15,00</i>
+      <PropsFilterError>
+        <Header dark="true" />
+        {paymentConfirmed ? (
+          <ContainerItem gap="true" align="true">
+            {orderTicket &&
+              orderTicket.map((ticket) => (
+                <ContainerItem
+                  key={ticket.id}
+                  column="true"
+                  background="true"
+                  shadow="true"
+                  spacetop="true"
+                >
+                  <WrapperIngress column="true">
+                    {' '}
+                    <Text spacer="true">{ticket.name}</Text>
+                    <P>
+                      <CalendarTodayOutlinedIcon
+                        sx={{ color: purpleColor }}
+                        fontSize="small"
+                      />{' '}
+                      {moment(ticket.start_date).format('DD/MM/YYYY HH:mm')}
+                    </P>
+                    <P spacetop="true">
+                      <LocationOnOutlinedIcon
+                        sx={{ color: purpleColor }}
+                        fontSize="small"
+                      />{' '}
+                      {ticket.address.address}
+                    </P>
+                  </WrapperIngress>
+                  <WrapperIngress column="true">
+                    <Text border="true" padding="true" spacer="true">
+                      Resumo da compra
+                    </Text>
+                    <P spacetop="true">{ticket.name}</P>
+                  </WrapperIngress>
+                  <WrapperIngress column="true">
+                    <Title bold="true">
+                      {ticket.quantity}x Ingresso{' '}
+                      <i>{formatCurrency(ticket.price * ticket.quantity)}</i>
                     </Title>
-                  )}
-                </WrapperIngress>
-                <WrapperIngress column bordernone>
-                  <Title bold>
-                    TOTAL{' '}
-                    <i
-                      style={{
-                        opacity: '1',
-                        fontSize: '20px',
-                        color: '#7E52DE',
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      {formatCurrency(price)}
-                    </i>
-                  </Title>
-                </WrapperIngress>
-              </ContainerItem>
-            ))}
+                    <Title bold="true">
+                      Taxa <i>R$10,20</i>
+                    </Title>
+                    {ticket.estacionamento && (
+                      <Title bold="true">
+                        Estacionamento <i>15,00</i>
+                      </Title>
+                    )}
+                  </WrapperIngress>
+                  <WrapperIngress column="true" bordernone="true">
+                    <Title bold="true">
+                      TOTAL{' '}
+                      <i
+                        style={{
+                          opacity: '1',
+                          fontSize: '20px',
+                          color: '#7E52DE',
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        {formatCurrency(price)}
+                      </i>
+                    </Title>
+                  </WrapperIngress>
+                </ContainerItem>
+              ))}
 
-          <PaymentWrapper width padding>
-            <Title bold style={{ marginBottom: '20px' }}>
-              FORMA DE PAGAMENENTO
-            </Title>
-            <Cards
-              number={watch('number', '')}
-              name={watch('name', '')}
-              expiry={watch('expiry', '')}
-              cvc={watch('cvc', '')}
-              focused={focused}
-            />
-            <form
-              noValidate
-              onSubmit={handleSubmit(onSubmit)}
-              style={{ marginTop: '20px' }}
-            >
-              <Label>Número do cartão</Label>
-              <Input
-                mask="9999 9999 9999 9999"
-                maskChar=""
-                type="text"
-                placeholder="2323 2323 2323 2323"
-                onFocus={changeFocus}
-                {...register('number')}
-                error={errors.number?.message}
+            <PaymentWrapper width="true" padding="true">
+              <Title bold="true" style={{ marginBottom: '20px' }}>
+                FORMA DE PAGAMENENTO
+              </Title>
+              <Cards
+                number={watch('number', '')}
+                name={watch('name', '')}
+                expiry={watch('expiry', '')}
+                cvc={watch('cvc', '')}
+                focused={focused}
               />
+              <form
+                noValidate
+                onSubmit={handleSubmit(onSubmit)}
+                style={{ marginTop: '20px' }}
+              >
+                <Label>Número do cartão</Label>
+                <Input
+                  mask="9999 9999 9999 9999"
+                  maskChar=""
+                  type="text"
+                  placeholder="2323 2323 2323 2323"
+                  onFocus={changeFocus}
+                  {...register('number')}
+                  error={errors.number?.message}
+                />
 
-              <Label>Nome do titular</Label>
-              <Input
-                mask="aaaaaaaaaaaaaaaaaaaaaaaaa"
-                type="text"
-                maskChar=" "
-                placeholder="Nome"
-                onFocus={changeFocus}
-                {...register('name')}
-                error={errors.name?.message}
-              />
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <div style={{ width: '50%' }}>
-                  <Label>Vencimento</Label>
-                  <Input
-                    mask="99/99"
-                    type="text"
-                    maskChar=""
-                    placeholder="12/28"
-                    onFocus={changeFocus}
-                    {...register('expiry')}
-                    error={errors.expiry?.message}
-                  />
+                <Label>Nome do titular</Label>
+                <Input
+                  mask="aaaaaaaaaaaaaaaaaaaaaaaaa"
+                  type="text"
+                  maskChar=" "
+                  placeholder="Nome"
+                  onFocus={changeFocus}
+                  {...register('name')}
+                  error={errors.name?.message}
+                />
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <div style={{ width: '50%' }}>
+                    <Label>Vencimento</Label>
+                    <Input
+                      mask="99/99"
+                      type="text"
+                      maskChar=""
+                      placeholder="12/28"
+                      onFocus={changeFocus}
+                      {...register('expiry')}
+                      error={errors.expiry?.message}
+                    />
+                  </div>
+                  <div>
+                    <Label>CVV</Label>
+                    <Input
+                      mask="999"
+                      type="text"
+                      placeholder="123"
+                      maskChar=""
+                      onFocus={changeFocus}
+                      {...register('cvc')}
+                      error={errors.cvc?.message}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <Label>CVV</Label>
-                  <Input
-                    mask="999"
-                    type="text"
-                    placeholder="123"
-                    maskChar=""
-                    onFocus={changeFocus}
-                    {...register('cvc')}
-                    error={errors.cvc?.message}
-                  />
-                </div>
-              </div>
-              <Button type="submit">
-                {isLoader ? <Loader color="#ffffff" /> : 'Confirmar'}
-              </Button>
-            </form>
-          </PaymentWrapper>
-        </ContainerItem>
-      ) : (
-        <RegistrationConfirmed />
-      )}
+                <Button type="submit">
+                  {isLoader ? <Loader color="#ffffff" /> : 'Confirmar'}
+                </Button>
+              </form>
+            </PaymentWrapper>
+          </ContainerItem>
+        ) : (
+          <RegistrationConfirmed />
+        )}
+      </PropsFilterError>
     </Container>
   );
 }

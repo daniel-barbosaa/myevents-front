@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ClipLoader } from 'react-spinners';
 import Carousel from 'react-elastic-carousel';
 
 export const Container = styled.div`

@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useNavigate } from 'react-router-dom';
+import { StyleSheetManager } from 'styled-components';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import { useUser } from '../../hooks/UserContext';
 import {
   Container,
@@ -18,7 +20,10 @@ import {
 import Ticket from '../../assets/Ticket.svg';
 import { Button } from '../../components';
 
+const shouldForwardProp = (prop) => !prop.startsWith();
+
 export function Login() {
+  const [validProp] = useState('true');
   const navigate = useNavigate();
   const { putUserData } = useUser();
 
@@ -72,34 +77,36 @@ export function Login() {
 
   return (
     <Container>
-      <div style={{ width: '400px' }}>
-        <Text spacer>
-          <TicketImg src={Ticket} />
-          MyEvents
-        </Text>
-        <Text size weigth>
-          Faça seu login na plataforma{' '}
-        </Text>
-      </div>
-      <ContainerItem>
-        <form noValidate onSubmit={handleSubmit(onSubmit)}>
-          <Input placeholder="Email" type="Email" {...register('email')} />
-          <Error>{errors.email?.message}</Error>
-          <Input
-            placeholder="Senha"
-            type="password"
-            {...register('password')}
-          />
-          <Error>{errors.password?.message}</Error>
-          <Button spacetop type="submit">
-            ENTRAR
-          </Button>
-          <div />
-          <P>
-            Não tem uma conta?<a href="#">Registre-se</a>
-          </P>
-        </form>
-      </ContainerItem>
+      <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+        <div style={{ width: '400px' }}>
+          <Text spacer={validProp}>
+            <TicketImg src={Ticket} />
+            MyEvents
+          </Text>
+          <Text size={validProp} weigth={validProp}>
+            Faça seu login na plataforma{' '}
+          </Text>
+        </div>
+        <ContainerItem>
+          <form noValidate onSubmit={handleSubmit(onSubmit)}>
+            <Input placeholder="Email" type="Email" {...register('email')} />
+            <Error>{errors.email?.message}</Error>
+            <Input
+              placeholder="Senha"
+              type="password"
+              {...register('password')}
+            />
+            <Error>{errors.password?.message}</Error>
+            <Button spacetop={validProp} type="submit">
+              ENTRAR
+            </Button>
+            <div />
+            <P>
+              Não tem uma conta?<a href="/registrar">Registre-se</a>
+            </P>
+          </form>
+        </ContainerItem>
+      </StyleSheetManager>
     </Container>
   );
 }

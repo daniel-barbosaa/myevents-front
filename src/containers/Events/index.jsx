@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { StyleSheetManager } from 'styled-components';
 import { Container } from './style';
 import {
   Header,
@@ -12,12 +11,30 @@ import {
 /* Glória a Deus */
 
 export function Events() {
+  const filteredProps = [
+    'isRTL',
+    'verticalMode',
+    'sliderPosition',
+    'swipedSliderPosition',
+    'isSwiping',
+    'transitionMs',
+    'tiltEasing',
+    'outerSpacing',
+    'active',
+    'itemPosition',
+  ];
+
   return (
     <Container>
-      <Header spacer login />
-      <MoreSeenCarousel />
-      <AutomaticCarousel />
-      <Footer />
+      <Header spacer="true" login />
+      <StyleSheetManager
+        shouldForwardProp={(prop) => !filteredProps.includes(prop)}
+      >
+        <MoreSeenCarousel />
+
+        <AutomaticCarousel />
+        <Footer />
+      </StyleSheetManager>
     </Container>
   );
 }

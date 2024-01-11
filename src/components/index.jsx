@@ -15,3 +15,4 @@ export * from './CheckOutCarousel';
 export * from './Description';
 export * from './RegistrationConfirmated';
 export * from './NoTickets';
+export * from './PropsFilterError';

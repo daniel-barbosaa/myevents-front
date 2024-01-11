@@ -1,10 +1,10 @@
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
+import { useNavigate } from 'react-router-dom';
 import { Container, Title, ContainerItem, P } from './style';
 import { Button } from '../Button';
-import { useUser } from '../../hooks/UserContext';
 
 export function RegistrationConfirmed() {
-  const { userData } = useUser();
+  const navigate = useNavigate();
   return (
     <Container>
       <ContainerItem>
@@ -28,7 +28,13 @@ export function RegistrationConfirmed() {
             Por: <i>MyEvents vendas online</i>
           </P>
         </div>
-        <Button>Meus ingresso</Button>
+        <Button
+          onClick={() => {
+            navigate('/meus-ingressos');
+          }}
+        >
+          Meus ingresso
+        </Button>
       </ContainerItem>
     </Container>
   );

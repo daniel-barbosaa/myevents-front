@@ -40,17 +40,16 @@ export function MoreSeenCarousel() {
     async function loadEvents() {
       try {
         setIsLoader(true);
-        setTimeout(async () => {
-          const { data } = await apiEventsSympla.get('');
-          const updatedEvents = data.data.map((event) => ({
-            ...event,
-            date_start: moment(event.start_date).format('DD'),
-            date_end: moment(event.start_date).format('DD'),
-            price: priceRandom,
-          }));
-          setIsLoader(false);
-          setEvents(updatedEvents);
-        }, 2000);
+
+        const { data } = await apiEventsSympla.get('');
+        const updatedEvents = data.data.map((event) => ({
+          ...event,
+          date_start: moment(event.start_date).format('DD'),
+          date_end: moment(event.start_date).format('DD'),
+          price: priceRandom,
+        }));
+        setIsLoader(false);
+        setEvents(updatedEvents);
       } catch (error) {
         console.error('Erro ao buscar eventos:', error);
       }
@@ -72,33 +71,35 @@ export function MoreSeenCarousel() {
       </Title>
       <ContainerItem>
         <Carrousel
+          verticalMode={false}
+          outerSpacing={0}
           itemsToShow={5}
           breakPoints={breakPoints}
           style={{ width: '100%' }}
         >
           {isLoader ? (
             <WrapperLoader>
-              <Loader color="#7e5ede" />
+              <Loader color="#ffffff" />
             </WrapperLoader>
           ) : (
             events &&
             events.map((item) => (
               <ContainerItem
-                column
-                spacer
-                pointer
+                column="true"
+                spacer="true"
+                pointer="true"
                 key={item.id}
                 onClick={() => {
                   handleItemClick(item);
                 }}
               >
                 <Image src={item.image} alt="" />
-                <ContainerItem column spacer>
-                  <P purple small style={{ fontWeight: 'bold' }}>
+                <ContainerItem column="true" spacer="true">
+                  <P purple="true" small="true" style={{ fontWeight: 'bold' }}>
                     {item.date_start} JAN <i>{'>'}</i> {item.date_end} JAN
                   </P>
                   <P>{item.name}</P>
-                  <P small light>
+                  <P small="true" light="true">
                     {item.address.name} - {item.address.state}
                   </P>
                 </ContainerItem>

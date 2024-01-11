@@ -19,7 +19,7 @@ import {
   Error,
 } from './style';
 import Ticket from '../../assets/Ticket.svg';
-import { Button } from '../../components';
+import { Button, PropsFilterError } from '../../components';
 
 // 6LcvmRYpAAAAAMZwyQmXuDJ_z6hoUGXQSZlidWXY
 
@@ -71,58 +71,58 @@ export function Register() {
 
   return (
     <Container>
-      <ContainerItem>
-        <form noValidate onSubmit={handleSubmit(onSubmit)}>
-          <h1>Crie sua conta</h1>
-          <div>
-            <Input type="email" placeholder="E-mail" {...register('email')} />
-            <Error>{errors.email?.message}</Error>
-          </div>
-          <div>
-            <Input type="text" placeholder="Seu Nome" {...register('name')} />
-            <Error>{errors.name?.message}</Error>
-          </div>
-          <div>
-            <Input
-              type="password"
-              placeholder="Sua senha"
-              {...register('password')}
-            />
-            <Error>{errors.password?.message}</Error>
-          </div>
-          <div>
-            <ReCAPTCHA
-              theme="dark"
-              sitekey="6LcvmRYpAAAAAMZwyQmXuDJ_z6hoUGXQSZlidWXY"
-              onChange={(val) => setCapVal(val)}
-            />
-          </div>
-          <Button spacetop disable={!capVal}>
-            CADASTRAR
-          </Button>
-          <P center>
-            Ao se registrar, você aceita nossos <a href="">termos de uso</a> e a
-            nossa <a href="">política de privacidade.</a>
+      <PropsFilterError>
+        <ContainerItem>
+          <form noValidate onSubmit={handleSubmit(onSubmit)}>
+            <h1>Crie sua conta</h1>
+            <div>
+              <Input type="email" placeholder="E-mail" {...register('email')} />
+              <Error>{errors.email?.message}</Error>
+            </div>
+            <div>
+              <Input type="text" placeholder="Seu Nome" {...register('name')} />
+              <Error>{errors.name?.message}</Error>
+            </div>
+            <div>
+              <Input
+                type="password"
+                placeholder="Sua senha"
+                {...register('password')}
+              />
+              <Error>{errors.password?.message}</Error>
+            </div>
+            <div>
+              <ReCAPTCHA
+                theme="dark"
+                sitekey="6LcvmRYpAAAAAMZwyQmXuDJ_z6hoUGXQSZlidWXY"
+                onChange={(val) => setCapVal(val)}
+              />
+            </div>
+            <Button spacetop="true">CADASTRAR</Button>
+            <P center="true">
+              Ao se registrar, você aceita nossos <a href="">termos de uso</a> e
+              a nossa <a href="">política de privacidade.</a>
+            </P>
+          </form>
+        </ContainerItem>
+        <ContainerItem>
+          <Text spacer="true">
+            <TicketImg src={Ticket} />
+            MyEvents
+          </Text>
+          <Info size="true" weigth="true">
+            Milhares de eventos que te espera todos os dias.
+          </Info>
+          <P>
+            Não vai querer perder aquele evento especial que você mais ama né?
+            Junte-se a nós
           </P>
-        </form>
-      </ContainerItem>
-      <ContainerItem>
-        <Text spacer>
-          <TicketImg src={Ticket} />
-          MyEvents
-        </Text>
-        <Info size weigth>
-          Milhares de eventos que te espera todos os dias.
-        </Info>
-        <P>
-          Não vai querer perder aquele evento especial que você mais ama né?
-          Junte-se a nós
-        </P>
-        <LoginBack>
-          <KeyboardBackspaceIcon />
-          <a href="">Voltar para login</a>
-        </LoginBack>
-      </ContainerItem>
+          <LoginBack>
+            <KeyboardBackspaceIcon />
+            <a href="/login">Voltar para login</a>
+          </LoginBack>
+        </ContainerItem>
+      </PropsFilterError>
     </Container>
   );
 }

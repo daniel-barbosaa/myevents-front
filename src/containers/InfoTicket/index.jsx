@@ -31,10 +31,9 @@ import {
   WrapperIngress,
 } from './style';
 import UndrawImg from '../../assets/undraw-happy.svg';
-import { Header, Button } from '../../components';
+import { Header, Button, PropsFilterError } from '../../components';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-/* MANDAR DADOS DO PEDIDO PARA TELA DE PAGAMENTO */
 
 export function InfoTicket() {
   const navigate = useNavigate();
@@ -89,146 +88,148 @@ export function InfoTicket() {
     }
   }, [ticket, tax, parking, discountInput]);
 
-  const upateTicket = () => {
-    if (parking === true) {
-      orderTicketWithParking();
-    }
-  };
-
   return (
     <Container>
-      <Header dark />
-      <ContainerItem>
-        <Image src={UndrawImg} />
-      </ContainerItem>
-      {orderTicket &&
-        orderTicket.map((ticket) => (
-          <ContainerItem>
-            <div style={{ width: '350px' }}>
-              <Text spacer>{ticket.name}</Text>
-              <P>
-                <CalendarTodayOutlinedIcon
-                  sx={{ color: purpleColor }}
-                  fontSize="small"
-                />{' '}
-                {moment(ticket.start_date).format('DD/MM/YYYY HH:mm')}
-              </P>
-              <P>
-                <LocationOnOutlinedIcon
-                  sx={{ color: purpleColor }}
-                  fontSize="small"
-                />{' '}
-                {ticket.address.address}
-              </P>
-              <div style={{ marginTop: '30px' }}>
-                <Text desc>Descrição</Text>
-                <P spacetop>{parse(ticket.detail)}</P>
+      <PropsFilterError>
+        {' '}
+        <Header dark />
+        <ContainerItem>
+          <Image src={UndrawImg} />
+        </ContainerItem>
+        {orderTicket &&
+          orderTicket.map((ticket) => (
+            <ContainerItem key={ticket.id}>
+              <div style={{ width: '350px' }}>
+                <Text spacer="true">{ticket.name}</Text>
+                <P>
+                  <CalendarTodayOutlinedIcon
+                    sx={{ color: purpleColor }}
+                    fontSize="small"
+                  />{' '}
+                  {moment(ticket.start_date).format('DD/MM/YYYY HH:mm')}
+                </P>
+                <P>
+                  <LocationOnOutlinedIcon
+                    sx={{ color: purpleColor }}
+                    fontSize="small"
+                  />{' '}
+                  {ticket.address.address}
+                </P>
+                <div style={{ marginTop: '30px' }}>
+                  <Text desc="true">Descrição</Text>
+                  <P spacetop="true">{parse(ticket.detail)}</P>
+                </div>
               </div>
-            </div>
 
-            <div style={{ width: '400px' }}>
-              <CardIngress>
-                <PersonAddOutlinedIcon
-                  sx={{ color: '#ffffff' }}
-                  fontSize="large"
-                />
-                <p>
-                  Atenção! Para comprar seus ingressos, é necessário estar
-                  logado na sua conta!
-                  <a href="#">Clique aqui para entrar.</a>
-                </p>
-              </CardIngress>
-              <ContainerItem column spacetop background shadow>
-                <WrapperIngress style={{ display: 'flex' }}>
-                  <div>
-                    <Title bold>MEIA ENTRADA PARA TODOS</Title>
-                    <Title bold>1</Title>
-                    <Title small>
-                      {formatCurrency(ticket.price)} + ({formatCurrency(tax)} de
-                      taxa)
-                    </Title>
-                  </div>
-                  <ButtonAdd>
-                    <i
-                      onClick={() => {
-                        decreaseOrder(ticket);
-                      }}
-                    >
-                      <RemoveOutlinedIcon sx={{ color: '#ffffff' }} />
-                    </i>
-                    <p>{ticket.quantity}</p>
-                    <i
-                      onClick={() => {
-                        increaseOrder(ticket);
-                      }}
-                    >
-                      <AddOutlinedIcon sx={{ color: '#ffffff' }} />
-                    </i>
-                  </ButtonAdd>
-                </WrapperIngress>
-                <WrapperIngress
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
+              <div style={{ width: '400px' }}>
+                <CardIngress>
+                  <PersonAddOutlinedIcon
+                    sx={{ color: '#ffffff' }}
+                    fontSize="large"
+                  />
+                  <p>
+                    Atenção! Para comprar seus ingressos, é necessário estar
+                    logado na sua conta!
+                    <a href="#">Clique aqui para entrar.</a>
+                  </p>
+                </CardIngress>
+                <ContainerItem
+                  column="true"
+                  spacetop="true"
+                  background="true"
+                  shadow="true"
                 >
-                  <div>
-                    <Title bold>ESTACIONAMENTO</Title>
-                    <Title small>R$ 15,00</Title>
-                  </div>
-                  <div>
-                    <Checkbox
-                      {...label}
-                      onChange={handleParkingChange}
-                      color="default"
-                      onClick={() => {
-                        updateTicket(parking);
-                      }}
-                    />
-                  </div>
-                </WrapperIngress>
-                <WrapperIngress column>
-                  <Title>Código promocional</Title>
-                  <div style={{ display: 'flex', gap: '70px' }}>
-                    <InputDescount
-                      type="text"
-                      placeholder="Insira o código"
-                      onChange={handleChange}
-                      value={discountInput}
-                    />
-                    <Button
-                      fontlight
-                      small
-                      onClick={() => {
-                        discountCoupon();
-                      }}
-                    >
-                      APLICAR
-                    </Button>
-                  </div>
-                </WrapperIngress>
-                <WrapperIngress bordernone column center>
-                  <Text spacer>
-                    <ShoppingCartOutlinedIcon
-                      sx={{ color: '#7e5ede' }}
-                      fontSize="large"
-                    />
-                    {formatCurrency(finalPrice)}
-                  </Text>
-                  <Button
-                    fontlight
-                    onClick={() => {
-                      navigate('/pagamento', { state: finalPrice });
+                  <WrapperIngress style={{ display: 'flex' }}>
+                    <div>
+                      <Title bold="true">MEIA ENTRADA PARA TODOS</Title>
+                      <Title bold="true">1</Title>
+                      <Title small="true">
+                        {formatCurrency(ticket.price)} + ({formatCurrency(tax)}{' '}
+                        de taxa)
+                      </Title>
+                    </div>
+                    <ButtonAdd>
+                      <i
+                        onClick={() => {
+                          decreaseOrder(ticket);
+                        }}
+                      >
+                        <RemoveOutlinedIcon sx={{ color: '#ffffff' }} />
+                      </i>
+                      <p>{ticket.quantity}</p>
+                      <i
+                        onClick={() => {
+                          increaseOrder(ticket);
+                        }}
+                      >
+                        <AddOutlinedIcon sx={{ color: '#ffffff' }} />
+                      </i>
+                    </ButtonAdd>
+                  </WrapperIngress>
+                  <WrapperIngress
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
                     }}
                   >
-                    FINALIZAR PEDIDO
-                  </Button>
-                </WrapperIngress>
-              </ContainerItem>
-            </div>
-          </ContainerItem>
-        ))}
+                    <div>
+                      <Title bold="true">ESTACIONAMENTO</Title>
+                      <Title small="true">R$ 15,00</Title>
+                    </div>
+                    <div>
+                      <Checkbox
+                        {...label}
+                        onChange={handleParkingChange}
+                        color="default"
+                        onClick={() => {
+                          updateTicket(parking);
+                        }}
+                      />
+                    </div>
+                  </WrapperIngress>
+                  <WrapperIngress column="true">
+                    <Title>Código promocional</Title>
+                    <div style={{ display: 'flex', gap: '70px' }}>
+                      <InputDescount
+                        type="text"
+                        placeholder="Insira o código"
+                        onChange={handleChange}
+                        value={discountInput}
+                      />
+                      <Button
+                        fontlight="true"
+                        small="true"
+                        onClick={() => {
+                          discountCoupon();
+                        }}
+                      >
+                        APLICAR
+                      </Button>
+                    </div>
+                  </WrapperIngress>
+                  <WrapperIngress bordernone="true" column="true" center="true">
+                    <Text spacer="true">
+                      <ShoppingCartOutlinedIcon
+                        sx={{ color: '#7e5ede' }}
+                        fontSize="large"
+                      />
+                      {formatCurrency(finalPrice)}
+                    </Text>
+                    <Button
+                      fontlight="true"
+                      onClick={() => {
+                        navigate('/pagamento', { state: finalPrice });
+                      }}
+                    >
+                      FINALIZAR PEDIDO
+                    </Button>
+                  </WrapperIngress>
+                </ContainerItem>
+              </div>
+            </ContainerItem>
+          ))}
+      </PropsFilterError>
     </Container>
   );
 }

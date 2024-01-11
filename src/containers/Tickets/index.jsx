@@ -4,8 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { useUser } from '../../hooks/UserContext';
-import { NoTickets, Header } from '../../components';
-import { Loader } from '../../components/Loader';
+import { NoTickets, Header, PropsFilterError } from '../../components';
 
 import ImgTicket from '../../assets/two-tickets.svg';
 import {
@@ -19,7 +18,6 @@ import {
 } from './style';
 
 export function Tickets() {
-  const purpleColor = '#7E52DE';
   const { userData } = useUser();
   const [noTickets, setNoTickets] = useState(false);
   const [clientTicket, setClientTickets] = useState([]);
@@ -39,7 +37,8 @@ export function Tickets() {
           }
         }
       } catch (error) {
-        console.error('Erro ao buscar eventos:', error);
+        throw new Error(error);
+        // console.error('Erro ao buscar eventos:', error);
       }
     }
 
@@ -53,34 +52,36 @@ export function Tickets() {
 
   return (
     <Container>
-      <Header />
-      {noTickets ? (
-        <NoTickets />
-      ) : (
-        <ContainerItem>
-          <Title>Meus ingressos</Title>
-          {clientTicket.map((ticket) => (
-            <Ticket>
-              <div style={{ padding: '20px' }}>
-                <EventName>{ticket.name}</EventName>
-                <Text large bottom>
-                  {moment(ticket.date).format('DD/MM/YYYY HH:mm')}
-                </Text>
-                <Text>
-                  <LocationOnOutlinedIcon fontSize="small" />
-                  {ticket.location}
-                </Text>
-              </div>
-              <FooterTicket>
-                <Text>
-                  <img src={ImgTicket} />
-                  {ticket.quantity} Ingressos
-                </Text>
-              </FooterTicket>
-            </Ticket>
-          ))}
-        </ContainerItem>
-      )}
+      <PropsFilterError>
+        <Header />
+        {noTickets ? (
+          <NoTickets />
+        ) : (
+          <ContainerItem>
+            <Title>Meus ingressos</Title>
+            {clientTicket.map((ticket) => (
+              <Ticket key={ticket.name}>
+                <div style={{ padding: '20px' }}>
+                  <EventName>{ticket.name}</EventName>
+                  <Text large="true" bottom="true">
+                    {moment(ticket.date).format('DD/MM/YYYY HH:mm')}
+                  </Text>
+                  <Text>
+                    <LocationOnOutlinedIcon fontSize="small" />
+                    {ticket.location}
+                  </Text>
+                </div>
+                <FooterTicket>
+                  <Text>
+                    <img src={ImgTicket} />
+                    {ticket.quantity} Ingressos
+                  </Text>
+                </FooterTicket>
+              </Ticket>
+            ))}
+          </ContainerItem>
+        )}
+      </PropsFilterError>
     </Container>
   );
 }

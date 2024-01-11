@@ -45,7 +45,7 @@ export function MenuNavigate({ stylelight = false, dark = false }) {
         onClick={handleClick}
       >
         {dark ? (
-          <Text stylelight>
+          <Text stylelight="true">
             {userData.name}
             <KeyboardArrowDownIcon />
           </Text>
