@@ -20,4 +20,8 @@ export const ContainerButton = styled.button`
     opacity: 0.7;
     transition: opacity 0.3s ease-in-out;
   }
+
+  @media (max-width: 280px) {
+    width: 200px;
+  }
 `;

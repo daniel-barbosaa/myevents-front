@@ -9,25 +9,70 @@ export const Container = styled.div`
   width: 100%;
   background: #15151a;
   align-items: center;
+  padding: 2em;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    height: 100vh;
+    padding: 2em;
+  }
+  @media (max-width: 576px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3em;
+    padding: 2em;
+    height: 100vh;
+  }
+  @media (max-width: 390px) {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 0.5em;
+  }
 `;
 
 export const ContainerItem = styled.div`
   width: 400px;
   display: flex;
+  justify-content: center;
+  @media (max-width: 390px) {
+    width: 300px;
+  }
 
-  form {
+  @media (max-width: 280px) {
+    width: 200px;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  background: #18181e;
+  padding: 50px 20px 50px 20px;
+  border-radius: 8px;
+
+  @media (max-width: 280px) {
     display: flex;
-    flex-direction: column;
-    background: #18181e;
-    padding: 60px 20px 60px 20px;
-    border-radius: 8px;
-    div {
-      background: #c8c3c1;
-      width: 300px;
-      height: 1px;
-      margin-top: 30px;
-      opacity: 0.2;
-    }
+    width: 280px;
+    padding: 20px;
+  }
+`;
+
+export const WrapperLogin = styled.div`
+  width: 400px;
+  @media (max-width: 480px) {
+    width: 300px;
+    font-size: 40px;
+  }
+
+  @media (max-width: 280px) {
+    width: 200px;
+    font-size: 40px;
   }
 `;
 
@@ -37,10 +82,26 @@ export const Text = styled.h1`
   color: #ffff;
   line-height: normal;
   margin-bottom: ${(props) => (props.spacer ? '30px' : 'none')};
+
+  @media (max-width: 991px) {
+    font-size: 40px;
+  }
+  @media (max-width: 480px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 380px) {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const TicketImg = styled.img`
   margin-right: 20px;
+
+  @media (max-width: 380px) {
+    width: 50px;
+  }
 `;
 
 export const Input = styled.input`
@@ -61,6 +122,10 @@ export const Input = styled.input`
   &:focus {
     border: 1px solid #7e52de;
     background: #15151a;
+  }
+
+  @media (max-width: 280px) {
+    width: 200px;
   }
 `;
 

@@ -128,9 +128,8 @@ export function InfoTicket() {
                     fontSize="large"
                   />
                   <p>
-                    Atenção! Para comprar seus ingressos, é necessário estar
-                    logado na sua conta!
-                    <a href="#">Clique aqui para entrar.</a>
+                    Atenção! Verifique bem os itens antes de efetuar o seu pagamento!
+                    <a href="#">Termos e políticas.</a>
                   </p>
                 </CardIngress>
                 <ContainerItem

@@ -16,9 +16,13 @@ import {
   Input,
   P,
   Error,
+  WrapperLogin,
+  Form,
 } from './style';
 import Ticket from '../../assets/Ticket.svg';
 import { Button } from '../../components';
+
+/* DEIXAR PROJETO RESPONSIVO FAZER TELA POR TELA DE CADA VEZ */
 
 const shouldForwardProp = (prop) => !prop.startsWith();
 
@@ -77,8 +81,8 @@ export function Login() {
 
   return (
     <Container>
-      <StyleSheetManager shouldForwardProp={shouldForwardProp}>
-        <div style={{ width: '400px' }}>
+      <WrapperLogin>
+        <StyleSheetManager shouldForwardProp={shouldForwardProp}>
           <Text spacer={validProp}>
             <TicketImg src={Ticket} />
             MyEvents
@@ -86,9 +90,11 @@ export function Login() {
           <Text size={validProp} weigth={validProp}>
             Faça seu login na plataforma{' '}
           </Text>
-        </div>
-        <ContainerItem>
-          <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        </StyleSheetManager>
+      </WrapperLogin>
+      <ContainerItem>
+        <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+          <Form noValidate onSubmit={handleSubmit(onSubmit)}>
             <Input placeholder="Email" type="Email" {...register('email')} />
             <Error>{errors.email?.message}</Error>
             <Input
@@ -104,9 +110,9 @@ export function Login() {
             <P>
               Não tem uma conta?<a href="/registrar">Registre-se</a>
             </P>
-          </form>
-        </ContainerItem>
-      </StyleSheetManager>
+          </Form>
+        </StyleSheetManager>
+      </ContainerItem>
     </Container>
   );
 }

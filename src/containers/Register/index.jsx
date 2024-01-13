@@ -17,11 +17,14 @@ import {
   P,
   LoginBack,
   Error,
+  Form,
 } from './style';
 import Ticket from '../../assets/Ticket.svg';
 import { Button, PropsFilterError } from '../../components';
 
 // 6LcvmRYpAAAAAMZwyQmXuDJ_z6hoUGXQSZlidWXY
+
+/* TERMINAR A RESPONSIVIDADE NA TELA DE REGISTER */
 
 export function Register() {
   const [capVal, setCapVal] = useState(null);
@@ -71,9 +74,9 @@ export function Register() {
 
   return (
     <Container>
-      <PropsFilterError>
-        <ContainerItem>
-          <form noValidate onSubmit={handleSubmit(onSubmit)}>
+      <ContainerItem>
+        <PropsFilterError>
+          <Form noValidate onSubmit={handleSubmit(onSubmit)}>
             <h1>Crie sua conta</h1>
             <div>
               <Input type="email" placeholder="E-mail" {...register('email')} />
@@ -91,21 +94,17 @@ export function Register() {
               />
               <Error>{errors.password?.message}</Error>
             </div>
-            <div>
-              <ReCAPTCHA
-                theme="dark"
-                sitekey="6LcvmRYpAAAAAMZwyQmXuDJ_z6hoUGXQSZlidWXY"
-                onChange={(val) => setCapVal(val)}
-              />
-            </div>
+
             <Button spacetop="true">CADASTRAR</Button>
             <P center="true">
               Ao se registrar, você aceita nossos <a href="">termos de uso</a> e
               a nossa <a href="">política de privacidade.</a>
             </P>
-          </form>
-        </ContainerItem>
-        <ContainerItem>
+          </Form>
+        </PropsFilterError>
+      </ContainerItem>
+      <ContainerItem>
+        <PropsFilterError>
           <Text spacer="true">
             <TicketImg src={Ticket} />
             MyEvents
@@ -121,8 +120,8 @@ export function Register() {
             <KeyboardBackspaceIcon />
             <a href="/login">Voltar para login</a>
           </LoginBack>
-        </ContainerItem>
-      </PropsFilterError>
+        </PropsFilterError>
+      </ContainerItem>
     </Container>
   );
 }
