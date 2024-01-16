@@ -45,6 +45,7 @@ export function Home() {
         ) : (
           <Header spacer="true" login="true" />
         )}
+
         <ListCategory />
         <MoreSeenCarousel />
         {loggedUser && <CheckOutCarousel />}

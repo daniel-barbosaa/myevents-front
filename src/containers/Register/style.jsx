@@ -2,42 +2,31 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  gap: 60px;
+  gap: 2em;
   align-items: center;
   justify-content: space-around;
-  height: 100vh;
   width: 100%;
   background: #15151a;
-  display: flex;
-  align-items: center;
+  overflow-y: auto;
+  min-height: 100vh;
+  padding: 1em 0em 1em 0em;
 
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
     gap: 3em;
-    height: 100vh;
-    padding: 2em;
+    padding-top: 1em;
   }
-  @media (max-width: 576px) {
+
+  @media (max-width: 820px) {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: center;
-    gap: 3em;
-    padding: 2em;
-    height: 100vh;
+    justify-content: space-evenly;
   }
-  @media (max-width: 480px) {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 1em;
-  }
-  @media (max-width: 390px) {
-    display: flex;
-    flex-direction: column-reverse;
-    height: 100vh;
-    padding: 0.5em;
+
+  @media (max-width: 480px){
+    padding-top: 3em;
   }
 `;
 
@@ -47,8 +36,12 @@ export const ContainerItem = styled.div`
   @media (max-width: 480px) {
     display: flex;
     flex-direction: column;
-    width: 300px;
     gap: 1em;
+    width: 350px;
+  }
+
+  @media (max-width: 280px) {
+    width: 250px;
   }
 `;
 
@@ -60,6 +53,7 @@ export const Form = styled.form`
   background: #18181e;
   padding: 40px 10px 40px 10px;
   border-radius: 8px;
+  box-sizing: border-box;
 
   h1 {
     color: #ffff;
@@ -70,8 +64,7 @@ export const Form = styled.form`
     h1 {
       font-size: 20px;
     }
-    div{
-      
+    div {
     }
   }
 `;
@@ -84,7 +77,7 @@ export const Text = styled.h1`
   margin-bottom: ${(props) => (props.spacer ? '30px' : 'none')};
 
   @media (max-width: 480px) {
-    font-size: 30px;
+    font-size: 2em;
     margin-bottom: 0px;
   }
   @media (max-width: 390px) {
@@ -96,10 +89,9 @@ export const TicketImg = styled.img`
   margin-right: 20px;
 
   @media (max-width: 480px) {
-    width: 30px;
+    width: 1em;
   }
   @media (max-width: 390px) {
-    display: none;
   }
 `;
 
@@ -128,6 +120,10 @@ export const Input = styled.input`
 
   @media (max-width: 390px) {
     width: 300px;
+  }
+
+  @media (max-width: 280px) {
+    width: 200px;
   }
 `;
 

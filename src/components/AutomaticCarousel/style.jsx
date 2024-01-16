@@ -24,38 +24,24 @@ export const Title = styled.p`
 `;
 
 export const ContainerItem = styled.div`
-  cursor: pointer;
-  padding: 20px;
+  display: flex;
+  gap: 10px;
 `;
 
 export const Wrape = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 8px;
-  box-shadow: 2px 4px 26px 0px rgba(0, 0, 0, 0.31);
-`;
-
-export const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-left: 30px;
+  gap: 3em;
+  margin: 0px 20px;
 `;
 
 export const Image = styled.img`
-  width: 50%;
-  border-radius: 8px 0px 0px 8px;
-`;
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
 
-export const P = styled.p`
-  color: ${(props) => (props.purple ? '#7E52DE' : '#C8C3C1')};
-  opacity: 0.8;
-
-  i {
-    padding: 0px 5px;
-    color: #797474;
-    margin: 4px 0px 4px 0px;
+  @media (max-width: 480px) {
+    height: 100%;
+    margin: 0px 30px;
   }
 `;
 

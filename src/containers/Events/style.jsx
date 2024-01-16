@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   background: #15151a;
   gap: 20px;
-  padding: 20px;
+  /* padding: 20px; */
 `;
 
 export const ContainerItem = styled.div`

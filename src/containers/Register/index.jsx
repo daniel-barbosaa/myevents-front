@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import ReCAPTCHA from 'react-google-recaptcha';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';

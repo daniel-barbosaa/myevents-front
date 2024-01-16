@@ -7,6 +7,11 @@ export const Container = styled.div`
   margin-bottom: ${(props) => (props.spacer ? '50px' : 'none')};
   box-shadow: ${(props) =>
     props.stylelight ? '0px 0.1px 6px 0px #00000018' : 'none'};
+  /* position: fixed;
+  top: 0;
+  z-index: 99;
+  background-color: #15151a;
+  width: 100%; */
 `;
 
 export const H1 = styled.h1`

@@ -12,7 +12,7 @@ export function Footer() {
         <WraperIcon>
           {socialIcons.map((icon) => (
             <i key={icon}>
-              <CircumIcon name={icon} size="40px" />
+              <CircumIcon name={icon} size="30px" />
             </i>
           ))}
         </WraperIcon>

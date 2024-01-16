@@ -5,11 +5,11 @@ export const Container = styled.div`
   gap: 60px;
   align-items: center;
   justify-content: space-around;
-  height: 100vh;
   width: 100%;
   background: #15151a;
   align-items: center;
   padding: 2em;
+  min-height: 100vh;
 
   @media (max-width: 768px) {
     display: flex;
@@ -17,7 +17,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 3em;
-    height: 100vh;
+
     padding: 2em;
   }
   @media (max-width: 576px) {
@@ -26,12 +26,10 @@ export const Container = styled.div`
     justify-content: center;
     gap: 3em;
     padding: 2em;
-    height: 100vh;
   }
   @media (max-width: 390px) {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     padding: 0.5em;
   }
 `;
