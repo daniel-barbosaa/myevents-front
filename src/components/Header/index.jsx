@@ -1,5 +1,5 @@
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import { useNavigate } from 'react-router-dom';
 import Ticket from '../../assets/ticket-white.svg';
 import { MenuNavigate } from '../MenuNavigate';
@@ -11,6 +11,9 @@ import {
   Text,
   WrapperRegister,
   ContainerItem,
+  ImageTicket,
+  TextLogin,
+  AccountIcon,
 } from './style';
 
 export function Header({ spacer, login = false, dark = false }) {
@@ -27,11 +30,11 @@ export function Header({ spacer, login = false, dark = false }) {
           ) : (
             <H1>MyEvents</H1>
           )}
-          <img src={Ticket} style={{ width: '50px' }} />
+          <ImageTicket src={Ticket} />
         </ContainerItem>
       )}
       {login ? (
-        <ContainerItem>
+        <ContainerItem space="true">
           <WrapperLogin
             onClick={() => {
               navigate('/login');
@@ -41,7 +44,7 @@ export function Header({ spacer, login = false, dark = false }) {
               style={{ color: '#7E52DE' }}
               fontSize="medium"
             />
-            <Text>ENTRAR</Text>
+            <TextLogin>ENTRAR</TextLogin>
           </WrapperLogin>
           <WrapperRegister
             onClick={() => {
@@ -54,7 +57,7 @@ export function Header({ spacer, login = false, dark = false }) {
       ) : (
         <ContainerItem space="true">
           <div>
-            <AccountCircleIcon sx={{ color: purpleColor }} fontSize="large" />
+            <AccountIcon sx={{ color: purpleColor }} fontSize="large" />
           </div>
           {dark ? (
             <MenuNavigate stylelight="true" dark="true" />

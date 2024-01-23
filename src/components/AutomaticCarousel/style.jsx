@@ -9,6 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 30px;
   margin-bottom: ${(props) => (props.spacer ? '30px' : 'none')};
+  padding: 1em;
 `;
 
 export const Title = styled.p`
@@ -41,7 +42,7 @@ export const Image = styled.img`
 
   @media (max-width: 480px) {
     height: 100%;
-    margin: 0px 30px;
+    margin: 0px 10px;
   }
 `;
 

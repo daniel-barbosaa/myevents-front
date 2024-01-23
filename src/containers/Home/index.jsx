@@ -11,6 +11,8 @@ import {
   Footer,
 } from '../../components';
 
+/* COLOCAR O BOTAO DE LOADER NA TELA DE LOGIN E REGISTER E FAZER O DEPLOY DA APLICAÇÃO */
+
 export function Home() {
   const [loggedUser, setLoggerUser] = useState(false);
   const filteredProps = [

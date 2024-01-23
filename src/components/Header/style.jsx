@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const Container = styled.div`
   display: flex;
@@ -7,15 +8,18 @@ export const Container = styled.div`
   margin-bottom: ${(props) => (props.spacer ? '50px' : 'none')};
   box-shadow: ${(props) =>
     props.stylelight ? '0px 0.1px 6px 0px #00000018' : 'none'};
-  /* position: fixed;
+  position: fixed;
   top: 0;
   z-index: 99;
-  background-color: #15151a;
-  width: 100%; */
+  background-color: ${(props) => (props.stylelight ? '#ffffff' : '#15151a')};
+  width: 100%;
 `;
 
 export const H1 = styled.h1`
   color: ${(props) => (props.dark ? '#15151A' : '#f1f1f1')};
+  @media (max-width: 280px) {
+    font-size: 20px;
+  }
 `;
 
 export const WrapperLogin = styled.div`
@@ -49,6 +53,10 @@ export const WrapperRegister = styled.div`
     background-color: #7e52de;
     transition: 0.2s ease-in-out;
   }
+
+  @media (max-width: 480px) {
+    width: 8em;
+  }
 `;
 
 export const ContainerItem = styled.div`
@@ -57,3 +65,22 @@ export const ContainerItem = styled.div`
   align-items: center;
   gap: ${(props) => (props.space ? '5px' : '20px')};
 `;
+
+export const ImageTicket = styled.img`
+  width: 50px;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+`;
+
+export const TextLogin = styled.p`
+  color: ${(props) => (props.dark ? '#15151A' : '#f1f1f1')};
+  font-weight: 600;
+  font-size: 14px;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+`;
+export const AccountIcon = styled(AccountCircleIcon)``;

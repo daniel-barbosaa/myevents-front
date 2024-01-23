@@ -20,21 +20,29 @@ export function RegistrationConfirmed() {
           <Title>Sua inscrição foi confimada!</Title>
           <TaskAltOutlinedIcon sx={{ color: '#22bb33', fontSize: '150px' }} />
         </div>
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '10px',
+            marginBottom: '30px',
+          }}
+        >
           <P>
             Pedido: <i>23332342</i>
           </P>
           <P style={{ marginTop: '10px', marginBottom: '30px' }}>
             Por: <i>MyEvents vendas online</i>
           </P>
+          <Button
+            onClick={() => {
+              navigate('/meus-ingressos');
+            }}
+          >
+            Meus ingresso
+          </Button>
         </div>
-        <Button
-          onClick={() => {
-            navigate('/meus-ingressos');
-          }}
-        >
-          Meus ingresso
-        </Button>
       </ContainerItem>
     </Container>
   );

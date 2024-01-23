@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,11 @@ export const ContainerItem = styled.div`
   flex-direction: column;
   padding: 20px;
   gap: 30px;
+  margin-top: 140px;
+
+  @media (max-width: 480px) {
+    align-items: center;
+  }
 `;
 
 export const Title = styled.h1`
@@ -46,6 +51,10 @@ export const Ticket = styled.div`
     rgba(142, 143, 250, 1) 45%,
     rgba(100, 57, 255, 1) 100%
   );
+
+  @media (max-width: 280px) {
+    width: 250px;
+  }
 `;
 
 export const FooterTicket = styled.div`

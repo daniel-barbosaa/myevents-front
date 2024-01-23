@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import InputMask from 'react-input-mask';
+import Cards from 'react-credit-cards-2';
 
 export const Container = styled.div`
   display: flex;
@@ -22,6 +23,10 @@ export const ContainerItem = styled.div`
   box-shadow: ${(props) =>
     props.shadow ? '1px 3px 10px -2px rgba(0,0,0,0.58)' : 'none'};
   margin-bottom: 50px;
+
+  @media (max-width: 280px) {
+    width: 250px;
+  }
 `;
 
 export const Text = styled.h1`
@@ -128,10 +133,37 @@ export const PaymentWrapper = styled.div`
   padding: 15px;
   width: ${(props) => (props.width ? '350px' : 'none')};
   padding: ${(props) => (props.padding ? '25px' : '0px')};
+  @media (max-width: 280px) {
+    width: 250px;
+    padding: none;
+  }
 `;
 
 export const Label = styled.p`
   font-size: 12px;
   opacity: 0.7;
   margin-bottom: 5px;
+`;
+
+export const WrapperContainer = styled.div`
+  margin: 150px 0px 40px 0px;
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 50px;
+  }
+`;
+
+export const WrappeCard = styled.div`
+  @media (max-width: 280px) {
+    display: none;
+  }
 `;

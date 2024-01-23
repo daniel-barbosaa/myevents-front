@@ -30,6 +30,8 @@ import {
   WrapperIngress,
   Label,
   PaymentWrapper,
+  WrapperContainer,
+  WrappeCard,
 } from './style';
 
 /* integrar a api na tela de ingresso  */
@@ -106,9 +108,9 @@ export function PaymentForm() {
   return (
     <Container>
       <PropsFilterError>
-        <Header dark="true" />
+        <Header />
         {paymentConfirmed ? (
-          <ContainerItem gap="true" align="true">
+          <WrapperContainer gap="true" align="true">
             {orderTicket &&
               orderTicket.map((ticket) => (
                 <ContainerItem
@@ -178,13 +180,15 @@ export function PaymentForm() {
               <Title bold="true" style={{ marginBottom: '20px' }}>
                 FORMA DE PAGAMENENTO
               </Title>
-              <Cards
-                number={watch('number', '')}
-                name={watch('name', '')}
-                expiry={watch('expiry', '')}
-                cvc={watch('cvc', '')}
-                focused={focused}
-              />
+              <WrappeCard>
+                <Cards
+                  number={watch('number', '')}
+                  name={watch('name', '')}
+                  expiry={watch('expiry', '')}
+                  cvc={watch('cvc', '')}
+                  focused={focused}
+                />
+              </WrappeCard>
               <form
                 noValidate
                 onSubmit={handleSubmit(onSubmit)}
@@ -242,7 +246,7 @@ export function PaymentForm() {
                 </Button>
               </form>
             </PaymentWrapper>
-          </ContainerItem>
+          </WrapperContainer>
         ) : (
           <RegistrationConfirmed />
         )}

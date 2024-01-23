@@ -29,6 +29,10 @@ import {
   Title,
   InputDescount,
   WrapperIngress,
+  WrapperInfoAndAdd,
+  ContainerGrid,
+  AddDiscount,
+  Info,
 } from './style';
 import UndrawImg from '../../assets/undraw-happy.svg';
 import { Header, Button, PropsFilterError } from '../../components';
@@ -92,14 +96,15 @@ export function InfoTicket() {
     <Container>
       <PropsFilterError>
         {' '}
-        <Header dark />
+        <Header stylelight="true" dark="true" />
+        <div style={{ marginTop: '100px' }} />
         <ContainerItem>
           <Image src={UndrawImg} />
         </ContainerItem>
         {orderTicket &&
           orderTicket.map((ticket) => (
-            <ContainerItem key={ticket.id}>
-              <div style={{ width: '350px' }}>
+            <WrapperInfoAndAdd key={ticket.id}>
+              <Info>
                 <Text spacer="true">{ticket.name}</Text>
                 <P>
                   <CalendarTodayOutlinedIcon
@@ -119,16 +124,17 @@ export function InfoTicket() {
                   <Text desc="true">Descrição</Text>
                   <P spacetop="true">{parse(ticket.detail)}</P>
                 </div>
-              </div>
+              </Info>
 
-              <div style={{ width: '400px' }}>
+              <ContainerGrid>
                 <CardIngress>
                   <PersonAddOutlinedIcon
                     sx={{ color: '#ffffff' }}
                     fontSize="large"
                   />
                   <p>
-                    Atenção! Verifique bem os itens antes de efetuar o seu pagamento!
+                    Atenção! Verifique bem os itens antes de efetuar o seu
+                    pagamento!
                     <a href="#">Termos e políticas.</a>
                   </p>
                 </CardIngress>
@@ -138,7 +144,9 @@ export function InfoTicket() {
                   background="true"
                   shadow="true"
                 >
-                  <WrapperIngress style={{ display: 'flex' }}>
+                  <WrapperIngress
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                  >
                     <div>
                       <Title bold="true">MEIA ENTRADA PARA TODOS</Title>
                       <Title bold="true">1</Title>
@@ -189,7 +197,7 @@ export function InfoTicket() {
                   </WrapperIngress>
                   <WrapperIngress column="true">
                     <Title>Código promocional</Title>
-                    <div style={{ display: 'flex', gap: '70px' }}>
+                    <AddDiscount>
                       <InputDescount
                         type="text"
                         placeholder="Insira o código"
@@ -205,7 +213,7 @@ export function InfoTicket() {
                       >
                         APLICAR
                       </Button>
-                    </div>
+                    </AddDiscount>
                   </WrapperIngress>
                   <WrapperIngress bordernone="true" column="true" center="true">
                     <Text spacer="true">
@@ -225,8 +233,8 @@ export function InfoTicket() {
                     </Button>
                   </WrapperIngress>
                 </ContainerItem>
-              </div>
-            </ContainerItem>
+              </ContainerGrid>
+            </WrapperInfoAndAdd>
           ))}
       </PropsFilterError>
     </Container>

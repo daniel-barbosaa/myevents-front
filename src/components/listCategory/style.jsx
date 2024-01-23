@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin-top: 7em;
+  padding: 1em;
+
+`;
 
 export const Text = styled.p`
   color: #ffffff;

@@ -8,8 +8,6 @@ import {
   Footer,
 } from '../../components';
 
-/* Glória a Deus */
-
 export function Events() {
   const filteredProps = [
     'isRTL',
@@ -26,10 +24,11 @@ export function Events() {
 
   return (
     <Container>
-      <Header spacer="true" login />
       <StyleSheetManager
         shouldForwardProp={(prop) => !filteredProps.includes(prop)}
       >
+        <Header spacer="true" login />
+        <div style={{ marginTop: '100px' }} />
         <MoreSeenCarousel />
 
         <AutomaticCarousel />

@@ -14,6 +14,7 @@ export const Title = styled.p`
 `;
 
 export const ContainerItem = styled.div`
+  margin-top: 130px;
   display: flex;
   flex-direction: column;
 `;

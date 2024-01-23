@@ -25,7 +25,7 @@ export const Container = styled.div`
     justify-content: space-evenly;
   }
 
-  @media (max-width: 480px){
+  @media (max-width: 480px) {
     padding-top: 3em;
   }
 `;
@@ -90,8 +90,6 @@ export const TicketImg = styled.img`
 
   @media (max-width: 480px) {
     width: 1em;
-  }
-  @media (max-width: 390px) {
   }
 `;
 
@@ -181,8 +179,6 @@ export const LoginBack = styled.p`
   @media (max-width: 480px) {
     margin-top: 1em;
     margin-bottom: 1em;
-  }
-  @media (max-width: 390px) {
   }
 `;
 

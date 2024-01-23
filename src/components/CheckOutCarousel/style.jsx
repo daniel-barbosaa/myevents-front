@@ -7,6 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 30px;
   margin-bottom: ${(props) => (props.spacer ? '30px' : 'none')};
+  padding: 1em;
 `;
 
 export const Carrousel = styled(Carousel)`

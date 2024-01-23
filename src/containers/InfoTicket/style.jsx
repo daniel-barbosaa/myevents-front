@@ -45,6 +45,10 @@ export const P = styled.p`
   opacity: 0.6;
   margin-top: ${(props) => (props.spacetop ? '10px' : 'none')};
   margin-bottom: 10px;
+
+  @media (max-width: 280px) {
+    width: 200px;
+  }
 `;
 
 export const CardIngress = styled.div`
@@ -63,6 +67,10 @@ export const CardIngress = styled.div`
     display: block;
     margin-top: 10px;
     color: #ffffff;
+  }
+
+  @media (max-width: 480px) {
+    column-gap: 10px;
   }
 `;
 
@@ -116,9 +124,66 @@ export const WrapperIngress = styled.div`
   column-gap: 30px;
   border-bottom: ${(props) =>
     props.bordernone ? 'none' : '1px dashed #C8C3C1'};
+
+  @media (max-width: 480px) {
+    column-gap: 15px;
+  }
+
+  @media (max-width: 280px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 export const Checked = styled.input`
   border: 20px;
-  
+`;
+
+export const WrapperInfoAndAdd = styled.div`
+  display: flex;
+  justify-content: space-around;
+  gap: 3em;
+
+  @media (max-width: 1030px) {
+    gap: 3em;
+  }
+  @media (max-width: 820px) {
+    gap: 3em;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 60px;
+  }
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-bottom: 60px;
+  }
+`;
+
+export const ContainerGrid = styled.div`
+  width: 400px;
+
+  @media (max-width: 280px) {
+    width: 250px;
+  }
+`;
+
+export const AddDiscount = styled.div`
+  display: flex;
+  gap: 70px;
+
+  @media (max-width: 280px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+`;
+
+export const Info = styled.div`
+  @media (max-width: 280px) {
+    width: 200px;
+  }
 `;
