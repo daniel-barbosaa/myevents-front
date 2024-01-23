@@ -96,7 +96,7 @@ export function InfoTicket() {
     <Container>
       <PropsFilterError>
         {' '}
-        <Header stylelight="true" dark="true" />
+        <Header dark="true" stylelight="true" />
         <div style={{ marginTop: '100px' }} />
         <ContainerItem>
           <Image src={UndrawImg} />

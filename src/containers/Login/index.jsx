@@ -21,12 +21,14 @@ import {
 } from './style';
 import Ticket from '../../assets/Ticket.svg';
 import { Button } from '../../components';
+import { Loader } from '../../components/Loader';
 
 /* DEIXAR PROJETO RESPONSIVO FAZER TELA POR TELA DE CADA VEZ */
 
 const shouldForwardProp = (prop) => !prop.startsWith();
 
 export function Login() {
+  const [isLoader, setIsLoader] = useState(false);
   const [validProp] = useState('true');
   const navigate = useNavigate();
   const { putUserData } = useUser();
@@ -50,8 +52,9 @@ export function Login() {
 
   const onSubmit = async (clientData) => {
     try {
+      setIsLoader(true);
       const { data, status } = await axios.post(
-        'http://localhost:3001/session',
+        'https://fastity-api.vercel.app/session',
         {
           email: clientData.email,
           password: clientData.password,
@@ -66,16 +69,20 @@ export function Login() {
         setTimeout(() => {
           toast.success('Seja bem vindo(a)');
           navigate('/');
+          setIsLoader(false);
         }, 1000);
       } else if (status === 404) {
         toast.error('Usuário não encontrado');
+        setIsLoader(false);
       } else if (status === 403) {
         toast.error('Senha incorreta');
+        setIsLoader(false);
       } else {
         throw new Error();
       }
     } catch (err) {
       toast.error('Erro no sistema, tente novamente');
+      setIsLoader(false);
     }
   };
 
@@ -104,7 +111,7 @@ export function Login() {
             />
             <Error>{errors.password?.message}</Error>
             <Button spacetop={validProp} type="submit">
-              ENTRAR
+              {isLoader ? <Loader color="#ffffff" size={20} /> : 'ENTRAR'}
             </Button>
             <div />
             <P>

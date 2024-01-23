@@ -15,7 +15,7 @@ export const Carrousel = styled(Carousel)`
     background: transparent;
   }
 
-  .jfzbvv {
+  /* .jfzbvv {
     color: #7e52de;
     box-shadow: none;
   }
@@ -23,6 +23,13 @@ export const Carrousel = styled(Carousel)`
   .hQICvF {
     color: #7e52de;
     box-shadow: none;
+  } */
+
+  .dSkWuK,
+  .iqNVkg {
+    background-color: transparent;
+    box-shadow: none;
+    color: #7e52de;
   }
 `;
 

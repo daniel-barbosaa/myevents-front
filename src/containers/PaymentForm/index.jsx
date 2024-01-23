@@ -108,7 +108,7 @@ export function PaymentForm() {
   return (
     <Container>
       <PropsFilterError>
-        <Header />
+        <Header dark="true" stylelight="true" />
         {paymentConfirmed ? (
           <WrapperContainer gap="true" align="true">
             {orderTicket &&
@@ -242,7 +242,11 @@ export function PaymentForm() {
                   </div>
                 </div>
                 <Button type="submit">
-                  {isLoader ? <Loader color="#ffffff" /> : 'Confirmar'}
+                  {isLoader ? (
+                    <Loader color="#ffffff" size={15} />
+                  ) : (
+                    'Confirmar'
+                  )}
                 </Button>
               </form>
             </PaymentWrapper>

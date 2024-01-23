@@ -20,13 +20,12 @@ import {
 } from './style';
 import Ticket from '../../assets/Ticket.svg';
 import { Button, PropsFilterError } from '../../components';
-
-// 6LcvmRYpAAAAAMZwyQmXuDJ_z6hoUGXQSZlidWXY
-
-/* TERMINAR A RESPONSIVIDADE NA TELA DE REGISTER */
+import { useNavigate } from 'react-router-dom';
+import { Loader } from '../../components/Loader';
 
 export function Register() {
-  const [capVal, setCapVal] = useState(null);
+  const [isLoader, setIsLoader] = useState(false);
+  const navigate = useNavigate();
 
   const schema = Yup.object().shape({
     name: Yup.string().required('Nome obrigatório'),
@@ -48,8 +47,9 @@ export function Register() {
 
   const onSubmit = async (clientData) => {
     try {
+      setIsLoader(true);
       const { status } = await axios.post(
-        'http://localhost:3001/register',
+        'https://fastity-api.vercel.app/register',
         {
           name: clientData.name,
           email: clientData.email,
@@ -60,14 +60,18 @@ export function Register() {
         },
       );
       if (status === 201 || status === 200) {
-        toast.success('Cadastrado criado com sucesso');
+        toast.success('Cadastrado criado com sucesso, faça login');
+        navigate('/login');
+        setIsLoader(false);
       } else if (status === 409) {
         toast.error('Email já existe, faça login para continuar');
+        setIsLoader(false);
       } else {
         throw new Error();
       }
     } catch (error) {
-      toast.error('Erro no sistema, tente novamente');
+      toast.error('Erro ao se cadastrar, tente novamente');
+      setIsLoader(false);
     }
   };
 
@@ -94,7 +98,9 @@ export function Register() {
               <Error>{errors.password?.message}</Error>
             </div>
 
-            <Button spacetop="true">CADASTRAR</Button>
+            <Button spacetop="true">
+              {isLoader ? <Loader color="#ffffff" size={20} /> : 'CADASTRAR'}
+            </Button>
             <P center="true">
               Ao se registrar, você aceita nossos <a href="">termos de uso</a> e
               a nossa <a href="">política de privacidade.</a>

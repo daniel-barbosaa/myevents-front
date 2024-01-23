@@ -42,12 +42,7 @@ export function Home() {
       <StyleSheetManager
         shouldForwardProp={(prop) => !filteredProps.includes(prop)}
       >
-        {loggedUser ? (
-          <Header spacer="true" />
-        ) : (
-          <Header spacer="true" login="true" />
-        )}
-
+        {loggedUser && <Header spacer="true" />}
         <ListCategory />
         <MoreSeenCarousel />
         {loggedUser && <CheckOutCarousel />}

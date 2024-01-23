@@ -16,11 +16,12 @@ import {
   AccountIcon,
 } from './style';
 
-export function Header({ spacer, login = false, dark = false }) {
+export function Header({ stylelight, login = false, dark = false }) {
   const navigate = useNavigate();
   const purpleColor = '#7E52DE';
+
   return (
-    <Container spacer="true" stylelight="true">
+    <Container spacer="true" stylelight={stylelight}>
       {login ? (
         <H1>MyEvents</H1>
       ) : (
@@ -30,7 +31,6 @@ export function Header({ spacer, login = false, dark = false }) {
           ) : (
             <H1>MyEvents</H1>
           )}
-          <ImageTicket src={Ticket} />
         </ContainerItem>
       )}
       {login ? (
