@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import {
   Container,
   Title,
@@ -11,7 +10,7 @@ import {
 } from './style';
 import apiEventsSympla from '../../services/api';
 import Fire from '../../assets/fire.svg';
-import { Loader } from '../loader';
+import { ClipLoader } from 'react-spinners';
 
 export function AutomaticCarousel() {
   const [isLoader, setIsLoader] = useState(false);
@@ -27,7 +26,6 @@ export function AutomaticCarousel() {
         setisSlider(true);
       } catch (error) {
         throw new Error(error);
-        // console.error('Erro ao buscar eventos:', error);
       }
     }
     loadEvents();
@@ -48,13 +46,13 @@ export function AutomaticCarousel() {
       </Title>
       {isLoader ? (
         <WrapperLoader>
-          <Loader color="#ffffff" />
+          <ClipLoader color="#ffffff" />
         </WrapperLoader>
       ) : (
         isSlider && (
           <Carrousel {...settings}>
             {events.map((item) => (
-              <ContainerItem>
+              <ContainerItem key={item.id}>
                 <Wrape>
                   <Image src={item.image} />
                 </Wrape>
