@@ -37,12 +37,12 @@ export const Wrape = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-  height: 400px;
   border-radius: 10px;
 
   @media (max-width: 480px) {
     height: 100%;
     margin: 0px 10px;
+    height: 400px;
   }
 `;
 

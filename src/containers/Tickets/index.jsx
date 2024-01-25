@@ -27,7 +27,7 @@ export function Tickets() {
       try {
         if (userData.id) {
           const { data } = await axios.get(
-            `http://localhost:3001/orders/${userData.id}`,
+            `https://fastity-api.vercel.app/orders/${userData.id}`,
           );
           if (data.length === 0) {
             setNoTickets(true);

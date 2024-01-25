@@ -1,14 +1,14 @@
-import Ballon from '/balloon.svg';
-import Guitar from '/guitar.svg';
-import Workshop from '/workshop.svg';
-import Teatro from '/teatro.svg';
+import Ballon from '../assets/balloon.svg';
+import Guitar from '../assets/guitar.svg';
+import Workshop from '../assets/workshop.svg';
+import Teatro from '../assets/teatro.svg';
 import Carousel from '/carousel.svg';
-import Hallowen from '/hallowen.svg';
-import Podium from '/podium.svg';
-import Festas from '/festas.svg';
-import Esporte from '/exercise.svg';
-import Hamburger from '/hamburger.svg';
-import Praying from '/praying.svg';
+import Hallowen from '../assets/hallowen.svg';
+import Podium from '../assets/podium.svg';
+import Festas from '../assets/festas.svg';
+import Esporte from '../assets/exercise.svg';
+import Hamburger from '../assets/hamburger.svg';
+import Praying from '../assets/praying.svg';
 
 export default {
   categoryInfo: [

@@ -39,8 +39,11 @@ export function CheckOutCarousel() {
           date_end: moment(event.start_date).format('DD'),
           price: priceRandom,
         }));
+        const shuffledEvents = [...updatedEvents].sort(
+          () => Math.random() - 0.5,
+        );
         setIsLoader(false);
-        setEvents(updatedEvents);
+        setEvents(shuffledEvents);
       } catch (error) {
         console.error('Erro ao buscar ingressos:', error);
       }

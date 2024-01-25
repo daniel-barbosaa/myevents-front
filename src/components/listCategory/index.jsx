@@ -1,6 +1,6 @@
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Icon, Container, Text } from './style';
-import utils from '../../utils';
+import utils from '../../utils/index';
 
 import '../../primereact-theme/theme.css';
 

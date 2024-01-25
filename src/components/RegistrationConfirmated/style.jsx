@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 100px);
+  min-height: 100vh;
 `;
 
 export const Title = styled.p`

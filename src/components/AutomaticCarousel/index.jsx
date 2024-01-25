@@ -10,6 +10,7 @@ import {
 } from './style';
 import apiEventsSympla from '../../services/api';
 import Fire from '../../assets/fire.svg';
+
 import { ClipLoader } from 'react-spinners';
 
 export function AutomaticCarousel() {

@@ -37,7 +37,7 @@ import {
 /* integrar a api na tela de ingresso  */
 
 export function PaymentForm() {
-  const [paymentConfirmed, setPaymentConfirmed] = useState(true);
+  const [paymentConfirmed, setPaymentConfirmed] = useState(true); // False para ajustar componente de confirmação
   const [isLoader, setIsLoader] = useState(false);
   const { userData } = useUser();
   const [focused, setFocused] = useState('');
@@ -80,7 +80,7 @@ export function PaymentForm() {
     try {
       setIsLoader(true);
       const { status } = await axios.post(
-        'http://localhost:3001/create-order',
+        'https://fastity-api.vercel.app/create-order',
         {
           orderId: userData.id,
           name: infoTicket.name,
