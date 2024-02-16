@@ -51,8 +51,8 @@ Sistema em produção, acesse: https://myevents-platform.vercel.app/eventos
 
 ## Breve demonstração da plataforma
 
+![Capturar](https://github.com/daniel-barbosaa/myevents-front/assets/101154066/1b273a76-abc9-4f1b-98f1-da6129cf3b4f)
 
-![Capturar](https://github.com/daniel-barbosaa/myevents-front/assets/101154066/933d58d5-0471-4719-a432-211afc4e6f37)
 
 
 
